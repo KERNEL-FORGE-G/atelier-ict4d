@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b315c">
+  <meta name="description" content="Soumettez en privé une idée de nouvel atelier ou une amélioration pour les ateliers ICT4D de l’Université de Yaoundé I.">
+  <link rel="icon" href="/assets/ict4d-logo.png" type="image/png">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Proposer un atelier | Ateliers ICT4D</title>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <header class="site-header"><div class="container header-inner">
+    <a class="brand" href="/#accueil" aria-label="Ateliers ICT4D, accueil"><img src="/assets/ict4d-logo.png" alt="" width="54" height="54"><span class="brand-copy"><strong>UNIVERSITÉ DE YAOUNDÉ I</strong><span>Filière ICT4D</span></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+    <nav class="main-nav" id="main-navigation" aria-label="Navigation principale"><a href="/#accueil">Accueil</a><a href="/#ateliers">Les ateliers</a><a href="/#intervenants">Intervenants</a><a href="/presence/">Ma carte</a><a class="nav-cta" href="/inscription/">Se préinscrire <span aria-hidden="true">↗</span></a></nav>
+  </div></header>
+  <main id="contenu">
+    <section class="detail-hero proposal-hero"><div class="container detail-hero-grid"><div class="detail-copy"><p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Contributions étudiantes · L1 à L3</p><p class="detail-overline">IMAGINER &amp; AMÉLIORER</p><h1>Votre idée peut <span>prendre forme.</span></h1><p class="hero-lead">Proposez un nouveau sujet ou suggérez une amélioration à un atelier ICT4D.</p><p class="hero-note">Les propositions seront examinées par l’équipe. La soumission ne garantit pas que l’atelier sera programmé.</p></div><div class="proposal-art" aria-hidden="true"><span class="proposal-block proposal-block-blue"></span><span class="proposal-block proposal-block-orange"></span><span class="proposal-block proposal-block-red"></span><span class="proposal-note">UNE IDÉE<br>EN DEVENIR</span></div></div></section>
+    <section class="section proposal-section"><div class="container proposal-grid"><div class="registration-copy"><p class="section-kicker">Soumission confidentielle</p><h2>Partagez votre <span>proposition.</span></h2><p>Les propositions et vos coordonnées restent privées dans l’espace d’administration. Elles ne sont pas publiées automatiquement.</p><div class="privacy-note"><span>Indiquez une adresse e-mail de contact afin que l’équipe puisse, si nécessaire, vous répondre au sujet de votre idée.</span></div></div>
+      <div class="form-card"><form id="proposal-form" novalidate>
+        <div class="form-row"><label for="proposer-name">Nom du proposant</label><input id="proposer-name" name="proposer_name" type="text" minlength="2" maxlength="120" autocomplete="name" required></div>
+        <div class="form-row"><label for="contact-email">E-mail de contact</label><input id="contact-email" name="contact_email" type="email" maxlength="254" autocomplete="email" required></div>
+        <div class="form-row"><label for="proposal-type">Type de proposition</label><select id="proposal-type" name="proposal_type" required><option value="">Sélectionner</option><option value="new">Nouvelle idée d’atelier</option><option value="improvement">Amélioration d’un atelier</option></select></div>
+        <div class="form-row" id="target-workshop-row" hidden><label for="target-workshop-slug">Atelier à améliorer</label><select id="target-workshop-slug" name="target_workshop_slug"><option value="">Sélectionner</option><option value="ict4d">Numérique et développement (ICT4D)</option><option value="gdevelop">Créer un jeu avec GDevelop</option><option value="git-github">Git et GitHub en équipe</option></select></div>
+        <div class="form-row"><label for="proposal-title">Titre de la proposition</label><input id="proposal-title" name="title" type="text" minlength="3" maxlength="140" required></div>
+        <div class="form-row"><label for="proposal-theme">Thème</label><input id="proposal-theme" name="theme" type="text" minlength="2" maxlength="100" required></div>
+        <div class="form-row"><label for="proposal-summary">Résumé</label><textarea id="proposal-summary" name="summary" rows="6" minlength="20" maxlength="1200" required placeholder="Décrivez brièvement l’idée, les apprentissages visés et le public concerné."></textarea></div>
+        <div class="form-row"><label for="duration-minutes">Durée envisagée (minutes)</label><input id="duration-minutes" name="duration_minutes" type="number" min="15" max="600" step="15" required placeholder="Ex. 90"></div>
+        <div class="honeypot" aria-hidden="true"><label for="proposal-website">Ne pas remplir</label><input id="proposal-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+        <label class="consent-row" for="proposal-consent"><input id="proposal-consent" name="consent" type="checkbox" required><span>J’accepte que mon nom, mon e-mail et cette proposition soient conservés de manière privée par l’équipe ICT4D pour examiner l’idée et, si nécessaire, me contacter.</span></label>
+        <button class="button button-primary submit-button" id="proposal-submit" type="submit"><span class="submit-label">Envoyer la proposition</span><span aria-hidden="true">→</span></button>
+        <p class="form-message" id="proposal-message" role="status" aria-live="polite"></p>
+        <p class="form-footnote">Les propositions seront examinées. Elles ne seront pas affichées sur le site public.</p>
+      </form><div class="success-card" id="proposal-success" hidden role="status" aria-live="polite"><div class="success-icon" aria-hidden="true">✓</div><h3>Proposition reçue</h3><p>Merci pour votre contribution. Votre proposition sera examinée par l’équipe ICT4D. Elle reste privée dans l’espace d’administration.</p><a class="text-button" href="/#ateliers">Retour aux ateliers <span aria-hidden="true">→</span></a></div></div>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="container footer-inner">
+    <div class="footer-brand"><img src="/assets/ict4d-logo.png" alt="" width="42" height="42"><span><strong>Ateliers ICT4D</strong><small>Projet étudiant</small></span></div>
+    <p>Apprendre · Expérimenter · Créer<br><small>Réalisé par les étudiants ICT4D avec KernelForge</small></p>
+    <div class="footer-links"><a href="https://uy1.uninet.cm/" target="_blank" rel="noopener noreferrer">Université de Yaoundé I</a><a href="https://kernelforge.codes/" target="_blank" rel="noopener noreferrer">KERNEL FORGE</a><a href="/presence/">Créer ma carte</a><a href="/proposer/">Proposer un atelier</a><a href="/admin/" rel="nofollow">Espace organisateur</a></div>
+  </div></footer>
+</body>
+</html>

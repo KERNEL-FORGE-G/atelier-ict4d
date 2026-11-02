@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#102d52">
+  <link rel="icon" href="/assets/ict4d-logo.png" type="image/png">
+  <link rel="stylesheet" href="/admin/admin.css">
+  <script src="/assets/vendor/jspdf.umd.min.js" defer></script>
+  <script src="/admin/admin.js" defer></script>
+  <title>Espace organisateur | Ateliers ICT4D</title>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Retour au site ICT4D"><img src="/assets/ict4d-logo.png" alt="Logo ICT4D — Université de Yaoundé I"><span><strong>UNIVERSITÉ DE YAOUNDÉ I</strong><span>Espace organisateur · ICT4D</span></span></a>
+    <a class="back-link" href="/">Retour au site <span aria-hidden="true">↗</span></a>
+  </header>
+  <main class="page-shell">
+    <section class="login-card card" id="login-panel" aria-labelledby="login-title">
+      <p class="eyebrow">Accès réservé</p><h1 id="login-title">Connexion administrateur</h1>
+      <p class="intro">Consultez et gérez les préinscriptions, propositions et ateliers ICT4D.</p>
+      <div class="security-note"><strong>Conseil de sécurité</strong><br>Après votre première connexion, remplacez le mot de passe initial par un mot de passe long et unique.</div>
+      <form id="login-form" class="login-form" autocomplete="on">
+        <label for="username">Identifiant<input id="username" name="username" type="text" value="ravel" autocomplete="username" maxlength="64" required></label>
+        <label for="password">Mot de passe<input id="password" name="password" type="password" autocomplete="current-password" maxlength="256" required></label>
+        <button class="button button-primary" id="login-button" type="submit">Se connecter <span aria-hidden="true">→</span></button>
+      </form>
+      <p class="message" id="login-message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="dashboard" id="dashboard" aria-labelledby="dashboard-title" hidden>
+      <div class="dashboard-heading"><div><p class="eyebrow">Espace de gestion</p><h1 id="dashboard-title">Ateliers ICT4D</h1><p class="subheading" id="page-count">Chargement…</p></div>
+        <div class="header-actions"><button class="button button-secondary" id="refresh-button" type="button">Actualiser</button><button class="button button-danger" id="logout-button" type="button">Déconnexion</button></div>
+      </div>
+      <p class="message dashboard-message" id="dashboard-message" role="status" aria-live="polite"></p>
+      <div class="stats-grid" aria-label="Indicateurs des préinscriptions">
+        <article class="stat-card"><span>Total reçu</span><strong id="stat-total">—</strong></article><article class="stat-card"><span>Nouvelles demandes</span><strong id="stat-new">—</strong></article><article class="stat-card"><span>Acceptées</span><strong id="stat-accepted">—</strong></article><article class="stat-card"><span>En attente</span><strong id="stat-waitlisted">—</strong></article>
+      </div>
+      <nav class="admin-tabs" role="tablist" aria-label="Listes administratives">
+        <button class="admin-tab is-active" id="tab-participants" type="button" role="tab" aria-selected="true" aria-controls="panel-participants" data-tab="participants">Participants <span class="tab-count" id="count-participants">—</span></button>
+        <button class="admin-tab" id="tab-proposals" type="button" role="tab" aria-selected="false" aria-controls="panel-proposals" data-tab="proposals" tabindex="-1">Propositions à examiner <span class="tab-count" id="count-proposals">—</span></button>
+        <button class="admin-tab" id="tab-workshops" type="button" role="tab" aria-selected="false" aria-controls="panel-workshops" data-tab="workshops" tabindex="-1">Ateliers à gérer <span class="tab-count" id="count-workshops">—</span></button>
+      </nav>
+      <section class="tab-panel" id="panel-participants" role="tabpanel" aria-labelledby="tab-participants">
+        <section class="list-card card" aria-label="Liste des préinscriptions">
+          <div class="list-toolbar"><div class="toolbar-controls">
+            <div class="filter-grid" aria-label="Filtres des préinscriptions">
+              <label for="workshop-filter">Atelier(s)<select id="workshop-filter"><option value="">Tous les ateliers</option><option value="general">Numérique et développement</option><option value="gdevelop">Jeu vidéo avec GDevelop</option><option value="git-github">Gestion de projet avec Git/GitHub</option></select></label>
+              <label for="status-filter">Statut<select id="status-filter"><option value="">Tous les statuts</option><option value="new">Nouvelle</option><option value="reviewed">Consultée</option><option value="accepted">Acceptée</option><option value="waitlisted">Liste d’attente</option><option value="rejected">Refusée</option></select></label>
+              <label class="search-field" for="search-filter">Recherche<input id="search-filter" type="search" autocomplete="off" placeholder="Nom, e-mail, atelier…"></label>
+              <label for="registration-date-from">Inscription depuis<input id="registration-date-from" type="date"></label>
+              <label for="registration-date-to">Inscription jusqu’au<input id="registration-date-to" type="date"></label>
+            </div>
+            <div class="pdf-options" aria-label="Personnalisation du rapport PDF">
+              <label class="pdf-title-field" for="pdf-title">Titre du PDF<input id="pdf-title" type="text" maxlength="120" value="Liste des préinscriptions ICT4D" placeholder="Ex. Participants — GDevelop"></label>
+              <label class="report-date-field" for="report-date">Date du rapport<input id="report-date" type="date"></label>
+              <fieldset class="column-options"><legend>Colonnes à exporter</legend>
+                <label><input type="checkbox" name="pdf-column" value="date" checked> Date</label>
+                <label><input type="checkbox" name="pdf-column" value="name" checked> Nom</label>
+                <label><input type="checkbox" name="pdf-column" value="email" checked> E-mail</label>
+                <label><input type="checkbox" name="pdf-column" value="level" checked> Niveau</label>
+                <label><input type="checkbox" name="pdf-column" value="workshop" checked> Ateliers</label>
+                <label><input type="checkbox" name="pdf-column" value="status" checked> Statut</label>
+              </fieldset>
+            </div>
+          </div><button class="button button-export" id="export-button" type="button"><span aria-hidden="true">↓</span> Exporter le PDF</button></div>
+          <div class="progress-area" id="loading-area" hidden><div class="progress-copy"><span id="loading-label">Chargement des préinscriptions…</span><span id="loading-count"></span></div><progress id="loading-progress" max="100" value="0" aria-label="Progression du chargement"></progress></div>
+          <div class="table-scroll" tabindex="0" aria-label="Tableau défilant des préinscriptions"><table><caption class="sr-only">Préinscriptions filtrées avec modification du statut en ligne</caption><thead><tr><th scope="col">Date</th><th scope="col">Nom</th><th scope="col">E-mail</th><th scope="col">Niveau</th><th scope="col">Ateliers</th><th scope="col">Statut</th></tr></thead><tbody id="registration-rows"></tbody></table>
+            <div class="empty-state" id="empty-state" hidden><strong id="empty-title">Aucune préinscription</strong><span id="empty-copy">Aucune demande ne correspond à ces filtres.</span></div>
+          </div>
+          <div class="table-footer"><span id="results-count" aria-live="polite"></span><nav class="pagination" aria-label="Pagination des préinscriptions"><button class="button button-secondary" id="previous-button" type="button" disabled>← Précédent</button><span id="page-indicator">Page 1</span><button class="button button-secondary" id="next-button" type="button" disabled>Suivant →</button></nav></div>
+          <p class="privacy-note">Données confidentielles — usage interne uniquement. Les notes administratives ne sont pas exportées.</p>
+        </section>
+      </section>
+      <section class="tab-panel" id="panel-proposals" role="tabpanel" aria-labelledby="tab-proposals" hidden>
+        <section class="list-card card"><div class="list-toolbar resource-toolbar"><div><h2>Propositions d’ateliers</h2><p class="list-description">Les coordonnées des proposant·es sont réservées à cet espace administrateur.</p></div><label class="resource-search" for="proposal-search">Rechercher dans les propositions<input id="proposal-search" type="search" autocomplete="off" placeholder="Titre, thème, contact, statut…"></label></div>
+          <div class="resource-state" id="proposal-state" role="status" aria-live="polite">Ouvrez cet onglet pour charger les propositions.</div><div class="record-list" id="proposal-list" aria-live="polite"></div>
+        </section>
+      </section>
+      <section class="tab-panel" id="panel-workshops" role="tabpanel" aria-labelledby="tab-workshops" hidden>
+        <section class="list-card card"><div class="list-toolbar resource-toolbar"><div><h2>Ateliers</h2><p class="list-description">Les brouillons et archives sont visibles uniquement dans cet espace.</p></div><div class="resource-actions"><label class="resource-search" for="workshop-search">Rechercher dans les ateliers<input id="workshop-search" type="search" autocomplete="off" placeholder="Titre, thème, slug, statut…"></label><button class="button button-primary" id="new-workshop-button" type="button">Créer un atelier</button></div></div>
+          <div class="resource-state" id="workshop-state" role="status" aria-live="polite">Ouvrez cet onglet pour charger les ateliers.</div><div class="record-list" id="workshop-list" aria-live="polite"></div>
+        </section>
+        <section class="editor-card card" id="workshop-editor" aria-labelledby="workshop-editor-title" hidden>
+          <div class="editor-heading"><div><p class="eyebrow">Fiche d’atelier</p><h2 id="workshop-editor-title">Nouvel atelier</h2></div><button class="button button-secondary" id="cancel-workshop-button" type="button">Fermer</button></div>
+          <form id="workshop-form" class="workshop-form"><input id="workshop-id" type="hidden"><input id="workshop-source-proposal" type="hidden">
+            <label for="workshop-slug">Slug <span class="field-help">Minuscules et tirets, unique.</span><input id="workshop-slug" name="slug" required maxlength="80" pattern="[a-z0-9]+(?:-[a-z0-9]+)*" autocomplete="off" placeholder="exemple-atelier"></label>
+            <label for="workshop-registration-code">Code d’inscription<input id="workshop-registration-code" name="registration_code" required maxlength="100" pattern="[a-z0-9]+(?:-[a-z0-9]+)*" autocomplete="off"></label>
+            <label for="workshop-title-input">Titre<input id="workshop-title-input" name="title" required minlength="3" maxlength="140"></label>
+            <label for="workshop-theme">Thème<input id="workshop-theme" name="theme" required minlength="2" maxlength="100"></label>
+            <label for="workshop-summary">Résumé<textarea id="workshop-summary" name="summary" rows="3" minlength="20" maxlength="1200" required></textarea></label>
+            <label for="workshop-description">Description<textarea id="workshop-description" name="description" rows="6" minlength="20" maxlength="6000" required></textarea></label>
+            <label for="workshop-duration">Durée (minutes)<input id="workshop-duration" name="duration_minutes" type="number" min="15" max="600" step="15"></label>
+            <label for="workshop-status">Statut<select id="workshop-status" name="status"><option value="draft">Brouillon</option><option value="published">Publié</option><option value="archived">Archivé</option></select></label>
+            <fieldset class="schedule-fields"><legend>Planning (facultatif)</legend>
+              <label for="workshop-schedule-date">Date<input id="workshop-schedule-date" name="schedule_date" type="date"></label>
+              <label for="workshop-start-time">Heure de début<input id="workshop-start-time" name="start_time" type="time"></label>
+              <label for="workshop-end-time">Heure de fin<input id="workshop-end-time" name="end_time" type="time"></label>
+              <label for="workshop-room">Salle<input id="workshop-room" name="room" maxlength="160" placeholder="Ex. Salle à confirmer"></label>
+              <p class="field-help schedule-help">La date, l’heure de début et l’heure de fin doivent être renseignées ensemble. Les heures sont celles de Yaoundé.</p>
+            </fieldset>
+            <fieldset class="facilitator-fields"><legend>Chargé·e d’atelier (facultatif)</legend>
+              <label for="facilitator-name">Nom<input id="facilitator-name" name="facilitator_name" maxlength="120"></label><label for="facilitator-role">Rôle<input id="facilitator-role" name="facilitator_role" maxlength="120"></label><label for="facilitator-bio">Biographie<textarea id="facilitator-bio" name="facilitator_bio" rows="4" maxlength="600"></textarea></label>
+              <label for="facilitator-photo">Photo (image JPEG/PNG/WebP)<input id="facilitator-photo" type="file" accept="image/jpeg,image/png,image/webp"></label>
+              <div class="photo-tools" id="photo-tools" hidden><div class="photo-preview-frame"><img id="photo-preview" alt="Prévisualisation recadrée du portrait"></div><div class="crop-controls"><label for="photo-zoom">Zoom<input id="photo-zoom" type="range" min="1" max="3" value="1" step="0.05"></label><label for="photo-x">Position horizontale<input id="photo-x" type="range" min="0" max="100" value="50" step="1"></label><label for="photo-y">Position verticale<input id="photo-y" type="range" min="0" max="100" value="50" step="1"></label></div></div>
+              <label class="consent-label" for="facilitator-consent"><input id="facilitator-consent" name="facilitator_consent" type="checkbox"><span>J’ai obtenu l’accord explicite pour publier le nom et le portrait</span></label><p class="consent-warning">Sans cet accord, le nom, le rôle, la biographie et la photo ne seront pas envoyés comme données publiques. Avant publication, vérifiez le consentement et le contenu de la fiche.</p>
+            </fieldset>
+            <div class="form-actions"><button class="button button-primary" id="save-workshop-button" type="submit">Enregistrer l’atelier</button><button class="button button-secondary" id="archive-workshop-button" type="button" hidden>Archiver</button></div><p class="form-message" id="workshop-form-message" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+      </section>
+      <details class="password-settings card"><summary><span>Paramètres du compte</span><span class="summary-action">Changer le mot de passe <span aria-hidden="true">＋</span></span></summary>
+        <form id="password-form" class="password-form"><label for="new-password">Nouveau mot de passe<input id="new-password" name="new_password" type="password" autocomplete="new-password" minlength="12" maxlength="256" required></label><label for="confirm-password">Confirmer le nouveau mot de passe<input id="confirm-password" name="confirm_password" type="password" autocomplete="new-password" minlength="12" maxlength="256" required></label><p class="password-help">Choisissez au moins 12 caractères et ne le réutilisez pas sur un autre site.</p><button class="button button-primary" id="change-password-button" type="submit">Mettre à jour</button></form>
+      </details>
+    </section>
+  </main>
+  <footer class="site-footer">ICT4D · Université de Yaoundé I <span>Accès réservé aux organisateurs</span></footer>
+</body>
+</html>

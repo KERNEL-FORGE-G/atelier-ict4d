@@ -1,0 +1,18 @@
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+!.env.*.example
+secrets/
+credentials/
+*service-account*.json
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local deployment and tooling state
+.netlify/
+.vercel/
+node_modules/
+.DS_Store

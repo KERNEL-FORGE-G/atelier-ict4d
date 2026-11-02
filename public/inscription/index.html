@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b315c">
+  <meta name="description" content="Une seule préinscription pour les ateliers ICT4D. Choisissez un ou plusieurs ateliers lorsque leurs horaires confirmés ne se chevauchent pas.">
+  <link rel="icon" href="/assets/ict4d-logo.png" type="image/png">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Inscription unique | Ateliers ICT4D</title>
+  <script src="/app.js" defer></script>
+  <script src="/registration.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/#accueil" aria-label="Ateliers ICT4D, accueil">
+        <img src="/assets/ict4d-logo.png" alt="" width="54" height="54">
+        <span class="brand-copy"><strong>UNIVERSITÉ DE YAOUNDÉ I</strong><span>Filière ICT4D</span></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+      <nav class="main-nav" id="main-navigation" aria-label="Navigation principale">
+        <a href="/#accueil">Accueil</a>
+        <a href="/#ateliers">Ateliers</a>
+        <a href="/#intervenants">Intervenants</a>
+        <a href="/presence/">Ma carte</a>
+        <a class="nav-cta" href="/inscription/" aria-current="page">Inscription unique <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+  <main id="contenu">
+    <section class="registration-hero">
+      <div class="container registration-hero-inner">
+        <div>
+          <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Préinscription · étudiants L1 à L3</p>
+          <p class="detail-overline">UNE SEULE FICHE · PLUSIEURS ATELIERS POSSIBLES</p>
+          <h1>Un seul formulaire. <span>Choisissez vos ateliers.</span></h1>
+          <p class="hero-lead">Inscrivez-vous une fois et indiquez les ateliers qui vous intéressent. Plusieurs choix seront possibles lorsque les horaires confirmés ne se chevauchent pas.</p>
+        </div>
+        <div class="registration-hero-mark" aria-hidden="true">
+          <span class="registration-orbit registration-orbit-one"></span>
+          <span class="registration-orbit registration-orbit-two"></span>
+          <span class="registration-mark-core">ICT4D</span>
+          <span class="registration-mark-caption">APPRENDRE · EXPÉRIMENTER · CRÉER</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section registration-page-section" id="inscription" aria-labelledby="registration-title">
+      <div class="container registration-page-grid">
+        <aside class="registration-page-info">
+          <p class="section-kicker">Avant de commencer</p>
+          <h2 id="registration-title">Une fiche par personne.</h2>
+          <p>Renseignez vos coordonnées une seule fois, puis cochez vos ateliers. Le site n’affiche une salle et un horaire que lorsqu’ils ont été renseignés.</p>
+          <div class="registration-rule-card">
+            <span class="registration-rule-icon" aria-hidden="true">01</span>
+            <div><strong>Un seul choix par créneau</strong><p>Si des ateliers se chevauchent, il faudra en choisir un seul. Plusieurs ateliers à des heures différentes pourront être réunis sur la même fiche.</p></div>
+          </div>
+          <div class="registration-rule-card">
+            <span class="registration-rule-icon" aria-hidden="true">02</span>
+            <div><strong>Horaires et salles à confirmer</strong><p>Ils apparaîtront ici dès que l’équipe aura renseigné les informations exactes. Aucun horaire ni aucune salle n’est supposé.</p></div>
+          </div>
+          <p class="registration-privacy-note"><strong>Confidentialité :</strong> les informations sont utilisées uniquement pour gérer la préinscription et transmettre les modalités pratiques.</p>
+        </aside>
+
+        <div class="form-card registration-form-card">
+          <form id="registration-form" data-registration-mode="multi" novalidate>
+            <div class="form-row"><label for="full_name">Nom complet</label><input id="full_name" name="full_name" type="text" minlength="2" maxlength="120" autocomplete="name" required placeholder="Ex. Amina M."></div>
+            <div class="form-row"><label for="email">Adresse e-mail</label><input id="email" name="email" type="email" maxlength="254" autocomplete="email" required placeholder="nom@exemple.com"></div>
+            <div class="form-row"><label for="level">Niveau d’étude</label><select id="level" name="level" required><option value="">Sélectionner</option><option value="L1">Licence 1 (L1)</option><option value="L2">Licence 2 (L2)</option><option value="L3">Licence 3 (L3)</option></select></div>
+
+            <fieldset class="workshop-choice-fieldset" aria-describedby="workshop-selection-message">
+              <legend>Ateliers souhaités</legend>
+              <p class="field-hint">Vous pouvez cocher plusieurs ateliers si leurs horaires confirmés ne se chevauchent pas.</p>
+              <div class="workshop-choice-list" id="workshop-options">
+                <label class="workshop-choice" for="workshop-general">
+                  <input id="workshop-general" name="workshops" type="checkbox" value="general" data-schedule-date="" data-start-time="" data-end-time="">
+                  <span class="workshop-choice-copy"><strong>Numérique et développement</strong><span>Technologies &amp; société</span><span class="workshop-choice-schedule">Horaire et salle à confirmer</span></span>
+                </label>
+                <label class="workshop-choice" for="workshop-gdevelop">
+                  <input id="workshop-gdevelop" name="workshops" type="checkbox" value="gdevelop" data-schedule-date="" data-start-time="" data-end-time="">
+                  <span class="workshop-choice-copy"><strong>Créer un jeu avec GDevelop</strong><span>Création numérique</span><span class="workshop-choice-schedule">Horaire et salle à confirmer</span></span>
+                </label>
+                <label class="workshop-choice" for="workshop-git-github">
+                  <input id="workshop-git-github" name="workshops" type="checkbox" value="git-github" data-schedule-date="" data-start-time="" data-end-time="">
+                  <span class="workshop-choice-copy"><strong>Git et GitHub en équipe</strong><span>Collaboration numérique</span><span class="workshop-choice-schedule">Horaire et salle à confirmer</span></span>
+                </label>
+              </div>
+              <p class="form-message" id="workshop-selection-message" role="status" aria-live="polite">Cochez au moins un atelier. Les horaires exacts seront affichés lorsqu’ils seront confirmés.</p>
+            </fieldset>
+
+            <div class="honeypot" aria-hidden="true"><label for="website">Ne pas remplir</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+            <label class="consent-row" for="consent"><input id="consent" name="consent" type="checkbox" required><span>J’accepte l’utilisation de ces informations pour gérer ma préinscription et recevoir les modalités des ateliers que j’ai choisis.</span></label>
+            <button class="button button-primary submit-button" type="submit"><span class="submit-label">Envoyer ma fiche unique</span><span aria-hidden="true">→</span></button>
+            <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+            <p class="form-footnote">La préinscription exprime votre intérêt; elle ne confirme pas encore une date ou une place.</p>
+          </form>
+          <div class="success-card" id="success-card" hidden role="status" aria-live="polite">
+            <div class="success-icon" aria-hidden="true">✓</div>
+            <h3>Votre fiche est enregistrée</h3>
+            <p>Merci pour votre intérêt. Une seule préinscription a été créée pour cette adresse e-mail.</p>
+            <ul class="success-workshops" id="success-workshops" aria-label="Ateliers choisis"></ul>
+            <p>Les informations pratiques seront communiquées ultérieurement.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq-section" aria-labelledby="registration-faq-title">
+      <div class="container faq-grid">
+        <div><p class="section-kicker">Questions fréquentes</p><h2 id="registration-faq-title">Avant de valider.</h2></div>
+        <div class="faq-list">
+          <details><summary>À qui s’adressent les ateliers ?</summary><p>Aux étudiantes et étudiants de Licence 1 à Licence 3.</p></details>
+          <details><summary>Puis-je choisir plusieurs ateliers ?</summary><p>Oui, sur une seule fiche, lorsque les horaires confirmés sont différents. Si deux ateliers se chevauchent, le formulaire empêchera de les sélectionner ensemble.</p></details>
+          <details><summary>Les dates, horaires et salles sont-ils déjà disponibles ?</summary><p>Ils seront affichés ici lorsqu’ils auront été confirmés par l’équipe. Tant que les horaires d’un atelier manquent, la fiche accepte un seul atelier afin d’éviter une combinaison impossible.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container footer-inner">
+    <div class="footer-brand"><img src="/assets/ict4d-logo.png" alt="" width="42" height="42"><span><strong>Ateliers ICT4D</strong><small>Projet étudiant</small></span></div>
+    <p>Apprendre · Expérimenter · Créer<br><small>Réalisé par les étudiants ICT4D avec KernelForge</small></p>
+    <div class="footer-links"><a href="https://uy1.uninet.cm/" target="_blank" rel="noopener noreferrer">Université de Yaoundé I</a><a href="https://kernelforge.codes/" target="_blank" rel="noopener noreferrer">KERNEL FORGE</a><a href="/presence/">Créer ma carte</a><a href="/proposer/">Proposer un atelier</a><a href="/admin/" rel="nofollow">Espace organisateur</a></div>
+  </div></footer>
+</body>
+</html>
