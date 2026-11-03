@@ -7,28 +7,21 @@
   <meta name="description" content="Une seule préinscription pour les ateliers ICT4D. Choisissez un ou plusieurs ateliers lorsque leurs horaires confirmés ne se chevauchent pas.">
   <link rel="icon" href="/assets/ict4d-logo.png" type="image/png">
   <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/site-redesign.css">
   <title>Inscription unique | Ateliers ICT4D</title>
   <script src="/app.js" defer></script>
+  <script src="/site-shell.js" defer></script>
   <script src="/registration.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="/#accueil" aria-label="Ateliers ICT4D, accueil">
-        <img src="/assets/ict4d-logo.png" alt="" width="54" height="54">
-        <span class="brand-copy"><strong>UNIVERSITÉ DE YAOUNDÉ I</strong><span>Filière ICT4D</span></span>
-      </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
-      <nav class="main-nav" id="main-navigation" aria-label="Navigation principale">
-        <a href="/#accueil">Accueil</a>
-        <a href="/#ateliers">Ateliers</a>
-        <a href="/#intervenants">Intervenants</a>
-        <a href="/presence/">Ma carte</a>
-        <a class="nav-cta" href="/inscription/" aria-current="page">Inscription unique <span aria-hidden="true">↗</span></a>
-      </nav>
-    </div>
-  </header>
+  <header class="site-header"><div class="container header-inner">
+  <a class="brand" href="/" aria-label="Ateliers ICT4D, accueil"><img src="/assets/ict4d-logo.png" alt="" width="58" height="56"><span class="brand-copy"><strong>UNIVERSITÉ DE YAOUNDÉ I</strong><span>Filière ICT4D</span></span></a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+  <nav class="main-nav" id="main-navigation" aria-label="Navigation principale">
+    <a href="/">Accueil</a><a href="/ateliers/">Ateliers</a><a href="/programme/">Programme</a><a href="/intervenants/">Intervenants</a><a href="/infos-pratiques/">Infos pratiques</a><a href="/presence/">Ma carte</a><a class="nav-cta" href="/inscription/">Préinscription <span aria-hidden="true">↗</span></a>
+  </nav>
+</div></header>
   <main id="contenu">
     <section class="registration-hero">
       <div class="container registration-hero-inner">
@@ -86,6 +79,14 @@
                   <input id="workshop-git-github" name="workshops" type="checkbox" value="git-github" data-schedule-date="" data-start-time="" data-end-time="">
                   <span class="workshop-choice-copy"><strong>Git et GitHub en équipe</strong><span>Collaboration numérique</span><span class="workshop-choice-schedule">Horaire et salle à confirmer</span></span>
                 </label>
+                <label class="workshop-choice" for="workshop-cybersecurite">
+                  <input id="workshop-cybersecurite" name="workshops" type="checkbox" value="cybersecurite" data-schedule-date="" data-start-time="" data-end-time="">
+                  <span class="workshop-choice-copy"><strong>Cybersécurité</strong><span>Sécurité &amp; hygiène numérique</span><span class="workshop-choice-schedule">Horaire et salle à confirmer</span></span>
+                </label>
+                <label class="workshop-choice" for="workshop-developpement-mobile">
+                  <input id="workshop-developpement-mobile" name="workshops" type="checkbox" value="developpement-mobile" data-schedule-date="" data-start-time="" data-end-time="">
+                  <span class="workshop-choice-copy"><strong>Développement mobile</strong><span>Création d’applications mobiles</span><span class="workshop-choice-schedule">Horaire et salle à confirmer</span></span>
+                </label>
               </div>
               <p class="form-message" id="workshop-selection-message" role="status" aria-live="polite">Cochez au moins un atelier. Les horaires exacts seront affichés lorsqu’ils seront confirmés.</p>
             </fieldset>
@@ -119,9 +120,16 @@
     </section>
   </main>
   <footer class="site-footer"><div class="container footer-inner">
-    <div class="footer-brand"><img src="/assets/ict4d-logo.png" alt="" width="42" height="42"><span><strong>Ateliers ICT4D</strong><small>Projet étudiant</small></span></div>
-    <p>Apprendre · Expérimenter · Créer<br><small>Réalisé par les étudiants ICT4D avec KernelForge</small></p>
-    <div class="footer-links"><a href="https://uy1.uninet.cm/" target="_blank" rel="noopener noreferrer">Université de Yaoundé I</a><a href="https://kernelforge.codes/" target="_blank" rel="noopener noreferrer">KERNEL FORGE</a><a href="/presence/">Créer ma carte</a><a href="/proposer/">Proposer un atelier</a><a href="/admin/" rel="nofollow">Espace organisateur</a></div>
-  </div></footer>
+  <div class="footer-top">
+    <a class="footer-brand" href="/" aria-label="Ateliers ICT4D, accueil"><img src="/assets/ict4d-logo.png" alt="" width="48" height="48"><span><strong>Ateliers ICT4D</strong><small>Université de Yaoundé I</small></span></a>
+    <p class="footer-manifesto">Apprendre · Expérimenter · Créer.<br>Un projet d’ateliers pour les étudiantes et étudiants L1 à L3.</p>
+  </div>
+  <div class="footer-columns">
+    <nav class="footer-column" aria-label="À propos"><h2>À propos</h2><a href="/a-propos/">La démarche ICT4D</a><a href="https://uy1.uninet.cm/" target="_blank" rel="noopener noreferrer">Université de Yaoundé I ↗</a></nav>
+    <nav class="footer-column" aria-label="Découvrir"><h2>Découvrir</h2><a href="/ateliers/">Les ateliers</a><a href="/programme/">Programme</a><a href="/intervenants/">Intervenants</a><a href="/infos-pratiques/">Infos pratiques</a></nav>
+    <nav class="footer-column" aria-label="Participer"><h2>Participer</h2><a href="/inscription/">Fiche unique de préinscription</a><a href="/presence/">Carte « I will be there »</a><a href="/proposer/">Proposer une idée</a><a href="/admin/" rel="nofollow">Espace organisateur</a></nav>
+  </div>
+  <div class="footer-bottom"><span>Filière ICT4D · Université de Yaoundé I</span><span>Dates et lieu à confirmer</span></div>
+</div></footer>
 </body>
 </html>

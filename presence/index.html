@@ -7,17 +7,21 @@
   <meta name="description" content="Créez localement votre carte personnalisée de présence aux ateliers ICT4D de l’Université de Yaoundé I.">
   <link rel="icon" href="/assets/ict4d-logo.png" type="image/png">
   <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/site-redesign.css">
   <title>Ma carte de présence | Ateliers ICT4D</title>
   <script src="/app.js" defer></script>
+  <script src="/site-shell.js" defer></script>
   <script src="/presence.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
   <header class="site-header"><div class="container header-inner">
-    <a class="brand" href="/#accueil" aria-label="Ateliers ICT4D, accueil"><img src="/assets/ict4d-logo.png" alt="" width="54" height="54"><span class="brand-copy"><strong>UNIVERSITÉ DE YAOUNDÉ I</strong><span>Filière ICT4D</span></span></a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
-    <nav class="main-nav" id="main-navigation" aria-label="Navigation principale"><a href="/#accueil">Accueil</a><a href="/#ateliers">Ateliers</a><a href="/#intervenants">Intervenants</a><a class="nav-cta" href="/inscription/">Se préinscrire <span aria-hidden="true">↗</span></a></nav>
-  </div></header>
+  <a class="brand" href="/" aria-label="Ateliers ICT4D, accueil"><img src="/assets/ict4d-logo.png" alt="" width="58" height="56"><span class="brand-copy"><strong>UNIVERSITÉ DE YAOUNDÉ I</strong><span>Filière ICT4D</span></span></a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+  <nav class="main-nav" id="main-navigation" aria-label="Navigation principale">
+    <a href="/">Accueil</a><a href="/ateliers/">Ateliers</a><a href="/programme/">Programme</a><a href="/intervenants/">Intervenants</a><a href="/infos-pratiques/">Infos pratiques</a><a href="/presence/">Ma carte</a><a class="nav-cta" href="/inscription/">Préinscription <span aria-hidden="true">↗</span></a>
+  </nav>
+</div></header>
   <main id="contenu">
     <section class="detail-hero presence-hero"><div class="container presence-intro-grid">
       <div class="detail-copy"><p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Votre carte · créée sur cet appareil</p><p class="detail-overline">ATELIERS ICT4D · UNIVERSITÉ DE YAOUNDÉ I</p><h1>Faites une place à votre nom. <span>On s’y retrouve.</span></h1>
@@ -33,8 +37,8 @@
         <section class="presence-controls form-card" aria-labelledby="controls-heading">
           <p class="section-kicker">Personnalisation</p><h3 id="controls-heading">Les détails de votre carte</h3>
           <div class="form-row"><label for="presence-name">Nom ou pseudonyme</label><input id="presence-name" type="text" maxlength="50" autocomplete="off" placeholder="Ex. Amina M."></div>
-          <div class="form-row"><label for="presence-workshop">Atelier choisi</label><select id="presence-workshop"><option value="general">Numérique et développement (ICT4D)</option><option value="gdevelop">Créer un jeu avec GDevelop</option><option value="git-github">Git et GitHub en équipe</option></select></div>
-          <div class="form-row"><label for="presence-photo">Portrait <span class="label-optional">· facultatif</span></label><input id="presence-photo" type="file" accept="image/*"><span class="field-hint">Une photo de face, bien éclairée, donne le meilleur cadrage. Traitement local uniquement.</span></div>
+          <div class="form-row"><label for="presence-workshop">Atelier choisi</label><select id="presence-workshop"><option value="general">Numérique et développement (ICT4D)</option><option value="gdevelop">Créer un jeu avec GDevelop</option><option value="git-github">Git et GitHub en équipe</option><option value="cybersecurite">Cybersécurité</option><option value="developpement-mobile">Développement mobile</option></select></div>
+          <div class="form-row"><label for="presence-photo">Portrait <span class="label-optional">· facultatif</span></label><input id="presence-photo" type="file" accept="image/*"><span class="field-hint">Votre portrait est facultatif; sans photo, le visuel généré de l’atelier choisi est utilisé. Traitement local uniquement.</span></div>
           <div class="form-row"><label for="presence-message">Légende personnalisée</label><textarea id="presence-message" maxlength="180" rows="3" placeholder="J’y serai ! Prêt·e à apprendre et créer."></textarea><span class="field-hint">Cette légende peut être modifiée et copiée pour accompagner votre partage.</span></div>
           <div class="caption-copy-row"><button class="button button-quiet" id="copy-caption" type="button">Copier la légende <span aria-hidden="true">⧉</span></button><span class="field-hint" id="caption-status" role="status" aria-live="polite"></span></div>
           <div class="presence-privacy"><span class="privacy-icon" aria-hidden="true">✓</span><div><strong>Votre photo reste privée</strong><p>Le nom et l’image sont traités dans votre navigateur. Aucun fichier n’est envoyé ni conservé par le site. Le partage ne démarre que si vous l’activez.</p></div></div>
@@ -51,9 +55,16 @@
     <section class="presence-bottom-band"><div class="container"><p class="section-kicker">ICT4D · Université de Yaoundé I</p><p>Apprendre · Expérimenter · Créer</p><a href="/#ateliers">Découvrir les ateliers <span aria-hidden="true">→</span></a></div></section>
   </main>
   <footer class="site-footer"><div class="container footer-inner">
-    <div class="footer-brand"><img src="/assets/ict4d-logo.png" alt="" width="42" height="42"><span><strong>Ateliers ICT4D</strong><small>Projet étudiant</small></span></div>
-    <p>Apprendre · Expérimenter · Créer<br><small>Réalisé par les étudiants ICT4D avec KernelForge</small></p>
-    <div class="footer-links"><a href="https://uy1.uninet.cm/" target="_blank" rel="noopener noreferrer">Université de Yaoundé I</a><a href="https://kernelforge.codes/" target="_blank" rel="noopener noreferrer">KERNEL FORGE</a><a href="/presence/">Créer ma carte</a><a href="/proposer/">Proposer un atelier</a><a href="/admin/" rel="nofollow">Espace organisateur</a></div>
-  </div></footer>
+  <div class="footer-top">
+    <a class="footer-brand" href="/" aria-label="Ateliers ICT4D, accueil"><img src="/assets/ict4d-logo.png" alt="" width="48" height="48"><span><strong>Ateliers ICT4D</strong><small>Université de Yaoundé I</small></span></a>
+    <p class="footer-manifesto">Apprendre · Expérimenter · Créer.<br>Un projet d’ateliers pour les étudiantes et étudiants L1 à L3.</p>
+  </div>
+  <div class="footer-columns">
+    <nav class="footer-column" aria-label="À propos"><h2>À propos</h2><a href="/a-propos/">La démarche ICT4D</a><a href="https://uy1.uninet.cm/" target="_blank" rel="noopener noreferrer">Université de Yaoundé I ↗</a></nav>
+    <nav class="footer-column" aria-label="Découvrir"><h2>Découvrir</h2><a href="/ateliers/">Les ateliers</a><a href="/programme/">Programme</a><a href="/intervenants/">Intervenants</a><a href="/infos-pratiques/">Infos pratiques</a></nav>
+    <nav class="footer-column" aria-label="Participer"><h2>Participer</h2><a href="/inscription/">Fiche unique de préinscription</a><a href="/presence/">Carte « I will be there »</a><a href="/proposer/">Proposer une idée</a><a href="/admin/" rel="nofollow">Espace organisateur</a></nav>
+  </div>
+  <div class="footer-bottom"><span>Filière ICT4D · Université de Yaoundé I</span><span>Dates et lieu à confirmer</span></div>
+</div></footer>
 </body>
 </html>

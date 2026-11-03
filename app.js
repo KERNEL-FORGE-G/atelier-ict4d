@@ -169,19 +169,25 @@
     ict4d: "/sessions/ict4d/",
     general: "/sessions/ict4d/",
     gdevelop: "/sessions/gdevelop/",
-    "git-github": "/sessions/git-github/"
+    "git-github": "/sessions/git-github/",
+    cybersecurite: "/sessions/cybersecurite/",
+    "developpement-mobile": "/sessions/developpement-mobile/"
   };
   const workshopImages = {
     ict4d: "/assets/illustration-general-web.jpg",
     general: "/assets/illustration-general-web.jpg",
     gdevelop: "/assets/illustration-gdevelop-web.jpg",
-    "git-github": "/assets/illustration-git-github-web.jpg"
+    "git-github": "/assets/illustration-git-github-web.jpg",
+    cybersecurite: "/assets/illustration-cybersecurity.jpg",
+    "developpement-mobile": "/assets/illustration-mobile-development.jpg"
   };
   const workshopTags = {
     ict4d: "PANORAMA ICT4D",
     general: "PANORAMA ICT4D",
     gdevelop: "CRÉATION NUMÉRIQUE",
-    "git-github": "COLLABORATION"
+    "git-github": "COLLABORATION",
+    cybersecurite: "SÉCURITÉ & HYGIÈNE NUMÉRIQUE",
+    "developpement-mobile": "CRÉATION D’APPLICATIONS MOBILES"
   };
 
   function text(value) {
@@ -193,6 +199,11 @@
     if (/^data:image\/(?:png|jpe?g|webp|gif);base64,[a-z0-9+/=]+$/i.test(source)) return source;
     if (/^(?:[a-z0-9+/]{32,}={0,2})$/i.test(source)) return `data:image/jpeg;base64,${source}`;
     return "";
+  }
+
+  function workshopImagePath(value) {
+    const source = text(value);
+    return /^\/assets\/[A-Za-z0-9][A-Za-z0-9._-]{0,200}[.](?:png|jpe?g|webp)$/i.test(source) ? source : "";
   }
 
   function addWorkshopOption(select, code, title) {
@@ -272,11 +283,12 @@
     const title = text(workshop.title);
     if (!slug || !title) return null;
     const card = document.createElement("article");
-    card.className = `workshop-card${slug === "general" || slug === "ict4d" ? " card-general" : slug === "gdevelop" ? " card-game" : slug === "git-github" ? " card-git" : " card-published"}`;
+    const cardCategory = ({ ict4d: "card-general", general: "card-general", gdevelop: "card-game", "git-github": "card-git", cybersecurite: "card-cybersecurity", "developpement-mobile": "card-mobile" })[slug] || "card-published";
+    card.className = `workshop-card ${cardCategory}`;
     const visual = document.createElement("div");
     visual.className = "workshop-visual";
     const image = document.createElement("img");
-    image.src = workshopImages[slug] || "/assets/illustration-general-web.jpg";
+    image.src = workshopImagePath(workshop.image_path) || workshopImages[slug] || "/assets/illustration-general-web.jpg";
     image.alt = `Illustration de l’atelier ${title}`;
     image.loading = "lazy";
     image.decoding = "async";

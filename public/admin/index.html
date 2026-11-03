@@ -46,7 +46,7 @@
         <section class="list-card card" aria-label="Liste des préinscriptions">
           <div class="list-toolbar"><div class="toolbar-controls">
             <div class="filter-grid" aria-label="Filtres des préinscriptions">
-              <label for="workshop-filter">Atelier(s)<select id="workshop-filter"><option value="">Tous les ateliers</option><option value="general">Numérique et développement</option><option value="gdevelop">Jeu vidéo avec GDevelop</option><option value="git-github">Gestion de projet avec Git/GitHub</option></select></label>
+              <label for="workshop-filter">Atelier(s)<select id="workshop-filter"><option value="">Tous les ateliers</option><option value="general">Numérique et développement</option><option value="gdevelop">Jeu vidéo avec GDevelop</option><option value="git-github">Gestion de projet avec Git/GitHub</option><option value="cybersecurite">Cybersécurité</option><option value="developpement-mobile">Développement mobile</option></select></label>
               <label for="status-filter">Statut<select id="status-filter"><option value="">Tous les statuts</option><option value="new">Nouvelle</option><option value="reviewed">Consultée</option><option value="accepted">Acceptée</option><option value="waitlisted">Liste d’attente</option><option value="rejected">Refusée</option></select></label>
               <label class="search-field" for="search-filter">Recherche<input id="search-filter" type="search" autocomplete="off" placeholder="Nom, e-mail, atelier…"></label>
               <label for="registration-date-from">Inscription depuis<input id="registration-date-from" type="date"></label>
@@ -99,6 +99,11 @@
               <label for="workshop-end-time">Heure de fin<input id="workshop-end-time" name="end_time" type="time"></label>
               <label for="workshop-room">Salle<input id="workshop-room" name="room" maxlength="160" placeholder="Ex. Salle à confirmer"></label>
               <p class="field-help schedule-help">La date, l’heure de début et l’heure de fin doivent être renseignées ensemble. Les heures sont celles de Yaoundé.</p>
+            </fieldset>
+            <fieldset class="workshop-image-fields"><legend>Photo ou illustration de l’atelier</legend>
+              <label for="workshop-image-path">Visuel local<select id="workshop-image-path" name="image_path"><option value="">Visuel automatique</option><option value="/assets/illustration-general-web.jpg">Numérique et développement</option><option value="/assets/illustration-gdevelop-web.jpg">GDevelop</option><option value="/assets/illustration-git-github-web.jpg">Git/GitHub</option><option value="/assets/illustration-cybersecurity.jpg">Cybersécurité</option><option value="/assets/illustration-mobile-development.jpg">Développement mobile</option></select></label>
+              <div class="workshop-image-preview" id="workshop-image-preview" hidden><img id="workshop-image-preview-img" alt="Prévisualisation de l’illustration de l’atelier"></div>
+              <p class="field-help image-storage-note">Sélectionnez un visuel déjà publié sur le site. L’envoi de nouvelles photos vers Cloudinary reste suspendu jusqu’à l’activation autorisée du compte.</p>
             </fieldset>
             <fieldset class="facilitator-fields"><legend>Chargé·e d’atelier (facultatif)</legend>
               <label for="facilitator-name">Nom<input id="facilitator-name" name="facilitator_name" maxlength="120"></label><label for="facilitator-role">Rôle<input id="facilitator-role" name="facilitator_role" maxlength="120"></label><label for="facilitator-bio">Biographie<textarea id="facilitator-bio" name="facilitator_bio" rows="4" maxlength="600"></textarea></label>

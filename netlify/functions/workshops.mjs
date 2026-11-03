@@ -19,6 +19,10 @@ function text(value) {
 }
 function publicWorkshop(row) {
   const name = text(row.facilitator_name);
+  const rawImagePath = text(row.image_path);
+  const imagePath = /^\/assets\/[A-Za-z0-9][A-Za-z0-9._-]{0,200}[.](?:png|jpe?g|webp)$/i.test(rawImagePath)
+    ? rawImagePath
+    : null;
   const image = typeof row.facilitator_photo_data === "string" &&
     row.facilitator_photo_data.length <= 650_000 &&
     /^data:image\/jpeg;base64,[A-Za-z0-9+/]+={0,2}$/.test(row.facilitator_photo_data)
@@ -38,6 +42,7 @@ function publicWorkshop(row) {
     start_time: text(row.start_time) || null,
     end_time: text(row.end_time) || null,
     room: text(row.room) || null,
+    image_path: imagePath,
     facilitator_name: profileVisible ? name : null,
     facilitator_role: profileVisible ? text(row.facilitator_role) || null : null,
     facilitator_bio: profileVisible ? text(row.facilitator_bio) || null : null,
@@ -54,7 +59,7 @@ export default async (request) => {
   const apiKey = env("SUPABASE_PUBLISHABLE_KEY");
   if (!supabaseUrl || !apiKey) return json({ ok: false, message: "Le catalogue d’ateliers est momentanément indisponible." }, 503);
   try {
-    const response = await fetch(`${supabaseUrl.replace(/\/$/, "")}/rest/v1/rpc/public_list_workshops_v2`, {
+    const response = await fetch(`${supabaseUrl.replace(/\/$/, "")}/rest/v1/rpc/public_list_workshops_v3`, {
       method: "POST",
       headers: {
         apikey: apiKey,

@@ -24,3 +24,10 @@ Références consultées pour adapter les principes, sans reprendre les visuels,
 ## Contraintes confirmées
 
 Palette existante à préserver : bleu nuit `#0b315c`, bleu `#0f70b7`, cyan/turquoise, jaune/orange. Public principal : étudiants L1–L3; trois ateliers existants : Numérique et développement, GDevelop, Git/GitHub. Pas de billetterie, de tarifs, de dates ni de salles inventés. Les créneaux et salles devront rester facultatifs jusqu’à fourniture des vraies données. Les fonctions d’inscription, d’admin, de partage et de confidentialité restent à préserver.
+
+
+## Référence de structure : PyCon Cameroon 2026
+
+Page d’accueil consultée : https://cm.pycon.org/2026/en. Pages internes repérées dans sa navigation et consultées pour comprendre les modèles de pages : https://cm.pycon.org/2026/en/about, https://cm.pycon.org/2026/en/agenda, https://cm.pycon.org/2026/en/speakers, https://cm.pycon.org/2026/en/sponsors, https://cm.pycon.org/2026/en/attend, https://cm.pycon.org/2026/en/venue, https://cm.pycon.org/2026/en/report, https://cm.pycon.org/2026/en/code-of-conduct, https://cm.pycon.org/2026/en/financial-aid et https://cm.pycon.org/2026/en/privacy. Ces pages servent uniquement de référence d’architecture et d’ergonomie ; leurs textes, visuels, marques et identités ne sont pas repris.
+
+Modèles utiles observés : pages thématiques cohérentes reliées par une navigation de site, contenu éditorial allant du résumé aux détails, programme chronologique découpé par journée/créneau, fiches d’intervenants accessibles depuis un répertoire, informations pratiques regroupées, et liens secondaires classés par intention dans un pied de page. Adaptation ICT4D : navigation « Accueil / Ateliers / Programme / Intervenants / Infos pratiques / Ma carte » avec une seule action d’inscription; pages dédiées aux ateliers; horaires et salles laissés « à confirmer » jusqu’à publication des données réelles; aucun portrait public sans accord explicite. Les informations PyCon propres à ses tarifs, sponsors, lieux, dates ou événements ne sont pas transposées au site ICT4D.

@@ -7,6 +7,10 @@
     if (/^(?:[a-z0-9+/]{32,}={0,2})$/i.test(source)) return `data:image/jpeg;base64,${source}`;
     return "";
   };
+  const workshopImagePath = (value) => {
+    const source = text(value);
+    return /^\/assets\/[A-Za-z0-9][A-Za-z0-9._-]{0,200}[.](?:png|jpe?g|webp)$/i.test(source) ? source : "";
+  };
 
   function setText(id, value) {
     const element = byId(id);
@@ -57,6 +61,14 @@
       setText("workshop-title", title);
       setText("workshop-theme", workshop.theme);
       setText("workshop-summary", workshop.summary);
+      const workshopImage = byId("workshop-image");
+      const imagePath = workshopImagePath(workshop.image_path);
+      if (workshopImage && imagePath) {
+        workshopImage.src = imagePath;
+        workshopImage.alt = `Illustration de l’atelier ${title}`;
+        workshopImage.hidden = false;
+        byId("workshop-mark")?.setAttribute("hidden", "");
+      }
       const scheduleParts = [];
       const scheduleDate = text(workshop.schedule_date);
       const startTime = text(workshop.start_time).slice(0, 5);

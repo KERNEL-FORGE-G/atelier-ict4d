@@ -4,144 +4,148 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b315c">
-  <meta name="description" content="Découvrez les ateliers ICT4D de l’Université de Yaoundé I : numérique et développement, création de jeux avec GDevelop, et collaboration avec Git et GitHub. Préinscriptions ouvertes aux étudiants L1 à L3.">
+  <meta name="description" content="Découvrez les ateliers pratiques ICT4D de l’Université de Yaoundé I : numérique et développement, GDevelop, Git et GitHub, cybersécurité et développement mobile. Réservés aux étudiants L1 à L3.">
   <meta property="og:title" content="Ateliers ICT4D — Université de Yaoundé I">
-  <meta property="og:description" content="Apprendre, expérimenter, créer : trois ateliers pratiques pour les étudiants L1 à L3.">
+  <meta property="og:description" content="Apprendre, expérimenter, créer : cinq ateliers pratiques pour les étudiants de Licence 1 à Licence 3.">
   <meta property="og:image" content="/assets/illustration-general-web.jpg">
   <link rel="icon" href="/assets/ict4d-logo.png" type="image/png">
   <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/site-redesign.css">
   <title>Ateliers ICT4D | Université de Yaoundé I</title>
   <script src="/app.js" defer></script>
+  <script src="/site-shell.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="/#accueil" aria-label="Ateliers ICT4D, accueil">
-        <img src="/assets/ict4d-logo.png" alt="" width="54" height="54">
-        <span class="brand-copy"><strong>UNIVERSITÉ DE YAOUNDÉ I</strong><span>Filière ICT4D</span></span>
-      </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Ouvrir le menu">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="main-nav" id="main-navigation" aria-label="Navigation principale">
-        <a href="/#accueil">Accueil</a>
-        <a href="/#ateliers">Ateliers</a>
-        <a href="/#intervenants">Intervenants</a>
-        <a href="/presence/">Ma carte</a>
-        <a class="nav-cta" href="/inscription/">Se préinscrire <span aria-hidden="true">↗</span></a>
-      </nav>
-    </div>
-  </header>
+  <header class="site-header"><div class="container header-inner">
+  <a class="brand" href="/" aria-label="Ateliers ICT4D, accueil"><img src="/assets/ict4d-logo.png" alt="" width="58" height="56"><span class="brand-copy"><strong>UNIVERSITÉ DE YAOUNDÉ I</strong><span>Filière ICT4D</span></span></a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+  <nav class="main-nav" id="main-navigation" aria-label="Navigation principale">
+    <a href="/">Accueil</a><a href="/ateliers/">Ateliers</a><a href="/programme/">Programme</a><a href="/intervenants/">Intervenants</a><a href="/infos-pratiques/">Infos pratiques</a><a href="/presence/">Ma carte</a><a class="nav-cta" href="/inscription/">Préinscription <span aria-hidden="true">↗</span></a>
+  </nav>
+</div></header>
   <main id="contenu">
     <section class="hero" id="accueil">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Ateliers pratiques · Étudiantes et étudiants L1 à L3</p>
+          <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Ateliers ICT4D · Université de Yaoundé I</p>
           <h1>Le numérique au service du <span>développement.</span></h1>
-          <p class="hero-lead">Apprendre. Expérimenter. Créer. Trois ateliers ICT4D pour explorer des outils numériques et les mettre au service d’idées concrètes.</p>
+          <p class="hero-lead">Apprendre. Expérimenter. Créer. Cinq ateliers pratiques pour explorer des outils numériques et les relier à des idées concrètes.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="/inscription/">Je me préinscris <span aria-hidden="true">↗</span></a>
-            <a class="button button-quiet" href="#ateliers">Découvrir les ateliers</a>
+            <a class="button button-primary" href="/inscription/">Découvrir la préinscription <span aria-hidden="true">↗</span></a>
+            <a class="button button-quiet" href="/ateliers/">Explorer les ateliers</a>
           </div>
-          <p class="hero-note">Dates et lieu à venir. La préinscription permet de manifester votre intérêt.</p>
-          <div class="hero-tech-pills" aria-label="Thèmes des ateliers">
-            <span class="hero-tech-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h5v5H5zM14 13h5v5h-5zM10 8.5h4M16.5 11v2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Technologies &amp; société</span>
-            <span class="hero-tech-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h3v5H7zM14 15h3v5h-3zM8.5 9v3.5h7V15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8.5" cy="17.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>Création numérique</span>
-            <span class="hero-tech-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="7" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="11" cy="19" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 5h4a4 4 0 0 1 4 4v1M16 9v4a4 4 0 0 1-4 4h-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Git &amp; collaboration</span>
+          <p class="hero-note"><span class="note-mark" aria-hidden="true">i</span> Pour les étudiantes et étudiants L1 à L3. Dates et lieu à confirmer.</p>
+          <div class="hero-facts" aria-label="En bref">
+            <div><strong>05</strong><span>ateliers à découvrir</span></div>
+            <div><strong>01</strong><span>fiche de préinscription</span></div>
+            <div><strong>L1–L3</strong><span>public concerné</span></div>
           </div>
         </div>
         <div class="hero-art">
-          <div class="poster-frame"><img src="/assets/illustration-general-web.jpg" alt="Des étudiantes et étudiants échangent autour des technologies numériques." width="900" height="1200" fetchpriority="high" decoding="async"></div>
-          <div class="poster-caption"><span class="caption-mark" aria-hidden="true">✦</span> ICT4D · Université de Yaoundé I</div>
+          <div class="hero-art-orbit" aria-hidden="true"></div>
+          <figure class="poster-frame"><img src="/assets/illustration-general-web.jpg" alt="Illustration d’étudiantes et d’étudiants réunis autour d’un projet numérique." width="1200" height="1600" fetchpriority="high" decoding="async"><figcaption><span class="caption-mark" aria-hidden="true">✦</span> Des outils, des idées, des usages.</figcaption></figure>
+          <div class="hero-sticker"><span class="sticker-icon" aria-hidden="true">↗</span><span><strong>À votre rythme</strong><small>Choisissez les ateliers qui vous parlent.</small></span></div>
         </div>
       </div>
-      <div class="hero-cloud" aria-hidden="true"></div>
+      <div class="hero-bottom-wave" aria-hidden="true"></div>
     </section>
 
-    <section class="section workshops-section" id="ateliers">
+    <section class="section workshops-section" id="ateliers" aria-labelledby="workshops-title">
       <div class="container">
-        <div class="section-heading">
-          <p class="section-kicker">À explorer</p>
-          <h2>Des portes d’entrée, <span>un même esprit.</span></h2>
-          <p>Explorez les ateliers, puis utilisez une fiche unique pour choisir un ou plusieurs créneaux compatibles.</p>
+        <div class="section-heading section-heading-split">
+          <div><p class="section-kicker">À explorer</p><h2 id="workshops-title">Cinq chemins pour <span>passer à l’action.</span></h2></div>
+          <div><p>Des ateliers complémentaires, pensés autour de la découverte, de la création et du travail en équipe.</p><a class="text-button" href="/ateliers/">Voir tous les ateliers <span aria-hidden="true">→</span></a></div>
         </div>
         <div class="workshop-grid" id="workshop-list" aria-live="polite">
           <article class="workshop-card card-general">
-            <div class="workshop-visual"><img src="/assets/illustration-general-web.jpg" alt="Équipe étudiante découvrant les technologies pour le développement." width="900" height="1200" loading="lazy" decoding="async"></div>
-            <p class="card-tag">PANORAMA ICT4D</p>
-            <h3>Numérique et développement</h3>
-            <p>Explorer comment les technologies numériques peuvent contribuer à répondre à des enjeux de développement.</p>
-            <a class="text-button" href="/sessions/ict4d/">Découvrir <span aria-hidden="true">→</span></a>
-            <a class="button button-quiet workshop-register-link" href="/inscription/?workshop=general">Choisir cet atelier</a>
+            <div class="workshop-visual"><img src="/assets/illustration-general-web.jpg" alt="Étudiants explorant les technologies numériques pour le développement." width="1200" height="1600" loading="lazy" decoding="async"><span class="workshop-index">01</span></div>
+            <div class="workshop-card-body"><p class="card-tag">TECHNOLOGIES &amp; SOCIÉTÉ</p><h3>Numérique et développement</h3><p>Explorer comment les technologies peuvent répondre à des enjeux de développement et aux réalités des communautés.</p><a class="text-button" href="/sessions/ict4d/">Découvrir l’atelier <span aria-hidden="true">→</span></a><a class="workshop-register-link" href="/inscription/?workshop=general">Choisir cet atelier <span aria-hidden="true">↗</span></a></div>
           </article>
           <article class="workshop-card card-game">
-            <div class="workshop-visual"><img src="/assets/illustration-gdevelop-web.jpg" alt="Création d’un jeu vidéo avec GDevelop." width="900" height="1200" loading="lazy" decoding="async"></div>
-            <p class="card-tag">CRÉATION NUMÉRIQUE</p>
-            <h3>Créer un jeu avec GDevelop</h3>
-            <p>Imaginer une mécanique, construire un prototype et découvrir les étapes de création d’un jeu vidéo.</p>
-            <a class="text-button" href="/sessions/gdevelop/">Découvrir <span aria-hidden="true">→</span></a>
-            <a class="button button-quiet workshop-register-link" href="/inscription/?workshop=gdevelop">Choisir cet atelier</a>
+            <div class="workshop-visual"><img src="/assets/illustration-gdevelop-web.jpg" alt="Étudiante imaginant un jeu vidéo avec GDevelop." width="1200" height="1600" loading="lazy" decoding="async"><span class="workshop-index">02</span></div>
+            <div class="workshop-card-body"><p class="card-tag">CRÉATION NUMÉRIQUE</p><h3>Créer un jeu avec GDevelop</h3><p>Imaginer une mécanique, assembler un prototype et découvrir les étapes de création d’un jeu.</p><a class="text-button" href="/sessions/gdevelop/">Découvrir l’atelier <span aria-hidden="true">→</span></a><a class="workshop-register-link" href="/inscription/?workshop=gdevelop">Choisir cet atelier <span aria-hidden="true">↗</span></a></div>
           </article>
           <article class="workshop-card card-git">
-            <div class="workshop-visual"><img src="/assets/illustration-git-github-web.jpg" alt="Collaboration sur un projet avec Git et GitHub." width="900" height="1200" loading="lazy" decoding="async"></div>
-            <p class="card-tag">COLLABORATION</p>
-            <h3>Git et GitHub en équipe</h3>
-            <p>Suivre les versions, collaborer et garder une trace claire de l’évolution d’un projet numérique.</p>
-            <a class="text-button" href="/sessions/git-github/">Découvrir <span aria-hidden="true">→</span></a>
-            <a class="button button-quiet workshop-register-link" href="/inscription/?workshop=git-github">Choisir cet atelier</a>
+            <div class="workshop-visual"><img src="/assets/illustration-git-github-web.jpg" alt="Étudiants collaborant sur un projet numérique avec Git et GitHub." width="1200" height="1600" loading="lazy" decoding="async"><span class="workshop-index">03</span></div>
+            <div class="workshop-card-body"><p class="card-tag">COLLABORATION</p><h3>Git et GitHub en équipe</h3><p>Suivre les versions, partager ses contributions et mieux organiser un projet collectif.</p><a class="text-button" href="/sessions/git-github/">Découvrir l’atelier <span aria-hidden="true">→</span></a><a class="workshop-register-link" href="/inscription/?workshop=git-github">Choisir cet atelier <span aria-hidden="true">↗</span></a></div>
+          </article>
+          <article class="workshop-card card-cybersecurity">
+            <div class="workshop-visual"><img src="/assets/illustration-cybersecurity.jpg" alt="Étudiantes et étudiants découvrant les bons réflexes de cybersécurité." width="832" height="1040" loading="lazy" decoding="async"><span class="workshop-index">04</span></div>
+            <div class="workshop-card-body"><p class="card-tag">SÉCURITÉ &amp; HYGIÈNE NUMÉRIQUE</p><h3>Cybersécurité</h3><p>Comprendre les risques numériques courants et adopter de meilleurs réflexes pour protéger ses comptes et ses données.</p><a class="text-button" href="/sessions/cybersecurite/">Découvrir l’atelier <span aria-hidden="true">→</span></a><a class="workshop-register-link" href="/inscription/?workshop=cybersecurite">Choisir cet atelier <span aria-hidden="true">↗</span></a></div>
+          </article>
+          <article class="workshop-card card-mobile">
+            <div class="workshop-visual"><img src="/assets/illustration-mobile-development.jpg" alt="Étudiantes et étudiants concevant une application mobile." width="832" height="1040" loading="lazy" decoding="async"><span class="workshop-index">05</span></div>
+            <div class="workshop-card-body"><p class="card-tag">CRÉATION D’APPLICATIONS MOBILES</p><h3>Développement mobile</h3><p>Explorer les principes du développement mobile et la conception d’applications pour smartphones.</p><a class="text-button" href="/sessions/developpement-mobile/">Découvrir l’atelier <span aria-hidden="true">→</span></a><a class="workshop-register-link" href="/inscription/?workshop=developpement-mobile">Choisir cet atelier <span aria-hidden="true">↗</span></a></div>
           </article>
         </div>
-        <p class="form-footnote workshop-load-note" id="workshop-load-note" role="status" aria-live="polite"></p>
-        <p class="propose-inline">Une idée de nouvel atelier ou une amélioration à suggérer ? <a href="/proposer/">Proposer un atelier</a>.</p>
+        <p class="workshop-load-note" id="workshop-load-note" role="status" aria-live="polite"></p>
+        <p class="propose-inline">Une idée à partager ? <a href="/proposer/">Proposer un atelier ou une amélioration</a>.</p>
       </div>
     </section>
 
-    <section class="section facilitators-section" id="intervenants">
+    <section class="section journey-section" aria-labelledby="journey-title">
+      <div class="container journey-grid">
+        <div class="journey-intro"><p class="section-kicker">Simple et transparent</p><h2 id="journey-title">Une seule fiche, <span>des choix éclairés.</span></h2><p>Manifestez votre intérêt une fois. Les informations pratiques seront ajoutées ici dès qu’elles auront été confirmées par l’équipe.</p><a class="button button-primary" href="/inscription/">Accéder à la préinscription <span aria-hidden="true">↗</span></a></div>
+        <div class="journey-steps">
+          <article><span>01</span><div><h3>Explorez</h3><p>Parcourez les fiches et découvrez le contenu des cinq ateliers.</p></div></article>
+          <article><span>02</span><div><h3>Choisissez</h3><p>Utilisez une seule fiche. Plusieurs choix ne seront possibles que si les horaires réels ne se chevauchent pas.</p></div></article>
+          <article><span>03</span><div><h3>Restez informé·e</h3><p>Les dates, horaires et salles apparaîtront une fois validés, sans estimation ni horaire supposé.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="programme-teaser" aria-labelledby="programme-teaser-title">
+      <div class="container programme-teaser-inner">
+        <div class="programme-teaser-icon" aria-hidden="true">↗</div>
+        <div><p class="section-kicker">Programme</p><h2 id="programme-teaser-title">Le calendrier se construit.</h2><p>Les créneaux, dates et salles seront publiés quand ils seront confirmés.</p></div>
+        <a class="button button-light" href="/programme/">Consulter le programme <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section class="section facilitators-section" id="intervenants" aria-labelledby="facilitators-title">
       <div class="container">
-        <div class="section-heading">
-          <p class="section-kicker">Rencontres &amp; transmission</p>
-          <h2>Intervenants / chargés <span>d’atelier.</span></h2>
-          <p>Découvrez les personnes qui accompagneront les ateliers, lorsque leur présentation aura été autorisée.</p>
+        <div class="section-heading section-heading-split">
+          <div><p class="section-kicker">Rencontres &amp; transmission</p><h2 id="facilitators-title">Les personnes derrière <span>les ateliers.</span></h2></div>
+          <div><p>Les profils publics seront ajoutés avec l’accord explicite des intervenantes et intervenants, notamment pour leur portrait.</p><a class="text-button" href="/intervenants/">En savoir plus <span aria-hidden="true">→</span></a></div>
         </div>
-        <div class="facilitator-list" id="facilitator-list" aria-live="polite">
-          <p class="facilitator-empty">Les intervenants seront présentés avec leur accord.</p>
-        </div>
+        <div class="facilitator-list" id="facilitator-list" aria-live="polite"><p class="facilitator-empty">Les intervenants seront présentés avec leur accord.</p></div>
       </div>
     </section>
 
     <section class="presence-promo" aria-labelledby="presence-title">
       <div class="container presence-promo-inner">
-        <div><p class="section-kicker">Partagez votre envie</p><h2 id="presence-title">Vous serez de la partie ?</h2><p>Créez une carte « I will be there » personnalisée sur votre appareil, puis choisissez si vous souhaitez la télécharger ou la partager.</p></div>
+        <div><p class="section-kicker">Partagez votre envie</p><h2 id="presence-title">Vous serez de la partie ?</h2><p>Créez votre carte « I will be there » directement sur votre appareil. Ajoutez un nom, un atelier et, si vous le souhaitez, votre propre photo.</p></div>
         <a class="button button-primary" href="/presence/">Créer ma carte <span aria-hidden="true">↗</span></a>
       </div>
     </section>
 
-    <section class="info-band" id="infos">
-      <div class="container info-band-inner">
-        <div class="info-icon" aria-hidden="true">i</div>
-        <div><p class="section-kicker">À retenir</p><h2>Dates et lieu à venir.</h2><p>Ces ateliers s’adressent aux étudiantes et étudiants de Licence 1 à Licence 3. Les informations pratiques seront communiquées ultérieurement.</p></div>
-        <a class="button button-light" href="/inscription/">Manifester mon intérêt <span aria-hidden="true">→</span></a>
-      </div>
-    </section>
-
-<section class="section faq-section" aria-labelledby="home-faq-title"><div class="container faq-grid">
-      <div><p class="section-kicker">Repères</p><h2 id="home-faq-title">Questions fréquentes.</h2></div>
+    <section class="section faq-section" aria-labelledby="home-faq-title"><div class="container faq-grid">
+      <div><p class="section-kicker">Repères</p><h2 id="home-faq-title">Questions fréquentes.</h2><p class="faq-lead">L’essentiel avant de choisir vos ateliers.</p></div>
       <div class="faq-list">
-        <details><summary>À qui s’adressent les ateliers ?</summary><p>Aux étudiantes et étudiants de Licence 1 à Licence 3.</p></details>
-        <details><summary>Les dates et salles sont-elles déjà fixées ?</summary><p>Les informations pratiques seront publiées après confirmation par l’équipe.</p></details>
-        <details><summary>Puis-je choisir plusieurs ateliers ?</summary><p>Oui, sur une seule fiche lorsque les créneaux confirmés ne se chevauchent pas.</p></details>
+        <details><summary>À qui s’adressent les ateliers ?</summary><p>Aux étudiantes et étudiants de Licence 1 à Licence 3 de la filière ICT4D.</p></details>
+        <details><summary>Les dates, horaires et salles sont-ils déjà fixés ?</summary><p>Ils seront affichés ici une fois confirmés par l’équipe. Aucune date ni salle n’est inventée ou supposée.</p></details>
+        <details><summary>Puis-je choisir plusieurs ateliers ?</summary><p>Oui, sur une seule fiche, uniquement lorsque les horaires réels sont connus et ne se chevauchent pas.</p></details>
+        <details><summary>Ma préinscription confirme-t-elle une place ?</summary><p>Non. Elle permet de manifester votre intérêt ; les modalités pratiques seront communiquées ultérieurement.</p></details>
       </div>
     </div></section>
-        <section class="section registration-callout" id="inscription"><div class="container registration-callout-inner">
-      <div><p class="section-kicker">Préinscription unique</p><h2>Une seule fiche. <span>Vos ateliers choisis.</span></h2><p>Renseignez vos coordonnées une seule fois. Les horaires et les salles seront affichés dès qu’ils seront confirmés.</p></div>
-      <a class="button button-primary" href="/inscription/">Choisir mes ateliers <span aria-hidden="true">↗</span></a>
+
+    <section class="section registration-callout" id="inscription"><div class="container registration-callout-inner">
+      <div><p class="section-kicker">Votre prochaine étape</p><h2>Prêt·e à <span>manifester votre intérêt ?</span></h2><p>Une fiche unique pour vous et les ateliers qui vous intéressent. Le formulaire d’inscription se trouve sur sa propre page.</p></div>
+      <a class="button button-primary" href="/inscription/">Ouvrir la fiche unique <span aria-hidden="true">↗</span></a>
     </div></section>
   </main>
   <footer class="site-footer"><div class="container footer-inner">
-    <div class="footer-brand"><img src="/assets/ict4d-logo.png" alt="" width="42" height="42"><span><strong>Ateliers ICT4D</strong><small>Projet étudiant</small></span></div>
-    <p>Apprendre · Expérimenter · Créer<br><small>Réalisé par les étudiants ICT4D avec KernelForge</small></p>
-    <div class="footer-links"><a href="https://uy1.uninet.cm/" target="_blank" rel="noopener noreferrer">Université de Yaoundé I</a><a href="https://kernelforge.codes/" target="_blank" rel="noopener noreferrer">KERNEL FORGE</a><a href="/presence/">Créer ma carte</a><a href="/proposer/">Proposer un atelier</a><a href="/admin/" rel="nofollow">Espace organisateur</a></div>
-  </div></footer>
+  <div class="footer-top">
+    <a class="footer-brand" href="/" aria-label="Ateliers ICT4D, accueil"><img src="/assets/ict4d-logo.png" alt="" width="48" height="48"><span><strong>Ateliers ICT4D</strong><small>Université de Yaoundé I</small></span></a>
+    <p class="footer-manifesto">Apprendre · Expérimenter · Créer.<br>Un projet d’ateliers pour les étudiantes et étudiants L1 à L3.</p>
+  </div>
+  <div class="footer-columns">
+    <nav class="footer-column" aria-label="À propos"><h2>À propos</h2><a href="/a-propos/">La démarche ICT4D</a><a href="https://uy1.uninet.cm/" target="_blank" rel="noopener noreferrer">Université de Yaoundé I ↗</a></nav>
+    <nav class="footer-column" aria-label="Découvrir"><h2>Découvrir</h2><a href="/ateliers/">Les ateliers</a><a href="/programme/">Programme</a><a href="/intervenants/">Intervenants</a><a href="/infos-pratiques/">Infos pratiques</a></nav>
+    <nav class="footer-column" aria-label="Participer"><h2>Participer</h2><a href="/inscription/">Fiche unique de préinscription</a><a href="/presence/">Carte « I will be there »</a><a href="/proposer/">Proposer une idée</a><a href="/admin/" rel="nofollow">Espace organisateur</a></nav>
+  </div>
+  <div class="footer-bottom"><span>Filière ICT4D · Université de Yaoundé I</span><span>Dates et lieu à confirmer</span></div>
+</div></footer>
 </body>
 </html>

@@ -22,7 +22,9 @@
   const workshopImages = {
     general: "/assets/illustration-general-web.jpg",
     gdevelop: "/assets/illustration-gdevelop-web.jpg",
-    "git-github": "/assets/illustration-git-github-web.jpg"
+    "git-github": "/assets/illustration-git-github-web.jpg",
+    cybersecurite: "/assets/illustration-cybersecurity.jpg",
+    "developpement-mobile": "/assets/illustration-mobile-development.jpg"
   };
 
   function clean(value) {
@@ -100,7 +102,7 @@
   function updateDefaultCaption() {
     if (captionWasEdited || !captionInput) return;
     const title = selectedWorkshop().title;
-    captionInput.value = `J’y serai ! Prêt·e à apprendre et créer à l’atelier ${title} des ateliers ICT4D.`;
+    captionInput.value = `J’y serai ! Prêt·e à apprendre et créer à l’atelier « ${title} » de la filière ICT4D.`;
   }
 
   function drawBackdrop(width, height) {
@@ -123,85 +125,111 @@
   }
 
   function drawBrand(context, width, y, compact = false) {
-    const x = compact ? 62 : 72;
-    const size = compact ? 74 : 86;
+    const x = 62;
+    const size = compact ? 60 : 68;
     context.save();
-    context.fillStyle = "#ffffff";
-    roundedRect(context, x, y, size, size, 13);
+    context.fillStyle = "rgba(255,255,255,.97)";
+    roundedRect(context, x, y, size, size, 16);
     context.fill();
-    roundedRect(context, x, y, size, size, 13);
-    context.clip();
-    if (brandLogo.naturalWidth) context.drawImage(brandLogo, x + 2, y + 2, size - 4, size - 4);
+    if (brandLogo.naturalWidth) context.drawImage(brandLogo, x + 5, y + 5, size - 10, size - 10);
     context.restore();
     context.textAlign = "left";
     context.textBaseline = "middle";
     context.fillStyle = "#ffffff";
-    context.font = `850 ${compact ? 26 : 30}px Inter, Arial, sans-serif`;
-    context.fillText("ATELIERS ICT4D", x + size + 17, y + size * 0.38);
-    context.fillStyle = "#91e3e8";
-    context.font = `750 ${compact ? 16 : 18}px Inter, Arial, sans-serif`;
-    context.fillText("UNIVERSITÉ DE YAOUNDÉ I", x + size + 17, y + size * 0.72);
+    context.font = `850 ${compact ? 24 : 27}px Inter, Arial, sans-serif`;
+    context.fillText("ATELIERS ICT4D", x + size + 15, y + size * .38);
+    context.fillStyle = "#a8eaf0";
+    context.font = `700 ${compact ? 15 : 17}px Inter, Arial, sans-serif`;
+    context.fillText("UNIVERSITÉ DE YAOUNDÉ I", x + size + 15, y + size * .72);
     context.textBaseline = "alphabetic";
   }
 
-  function drawTechGlyphs(context, x, y, scale = 1) {
+  function drawTechGlyphs(context, x, y, scale = 1, workshopCode = "general") {
     context.save();
     context.translate(x, y);
     context.scale(scale, scale);
-    context.strokeStyle = "rgba(145,227,232,.78)";
-    context.fillStyle = "rgba(245,188,48,.96)";
+    context.strokeStyle = "rgba(145,227,232,.94)";
+    context.fillStyle = "rgba(245,188,48,.98)";
     context.lineWidth = 4;
     context.lineCap = "round";
+    context.lineJoin = "round";
+
+    // A small code mark and connected nodes make the technology motif visible but quiet.
+    context.font = "850 21px Inter, Arial, sans-serif";
+    context.textAlign = "center";
+    context.fillStyle = "#a8eaf0";
+    context.fillText("</>", 12, 68);
     context.beginPath();
-    context.moveTo(0, 38); context.lineTo(33, 38); context.lineTo(52, 17); context.lineTo(84, 17);
-    context.moveTo(33, 38); context.lineTo(52, 61); context.lineTo(84, 61);
+    context.moveTo(58, 43); context.lineTo(83, 26); context.lineTo(105, 43); context.lineTo(83, 60);
     context.stroke();
-    for (const [cx, cy] of [[0,38],[84,17],[84,61]]) {
-      context.beginPath(); context.arc(cx, cy, 7, 0, Math.PI * 2); context.fill();
+    for (const [cx, cy] of [[58,43],[83,26],[105,43],[83,60]]) {
+      context.beginPath(); context.arc(cx, cy, 4.5, 0, Math.PI * 2); context.fill();
+    }
+
+    context.strokeStyle = "#ffffff";
+    context.lineWidth = 4.5;
+    if (workshopCode === "cybersecurite") {
+      context.beginPath();
+      context.moveTo(145, 23); context.lineTo(166, 31); context.lineTo(164, 53);
+      context.quadraticCurveTo(158, 69, 145, 77); context.quadraticCurveTo(132, 69, 126, 53);
+      context.lineTo(124, 31); context.closePath(); context.stroke();
+      context.beginPath(); context.arc(145, 44, 7, Math.PI, 0); context.lineTo(152, 57); context.lineTo(138, 57); context.closePath(); context.stroke();
+    } else if (workshopCode === "developpement-mobile") {
+      context.beginPath(); context.roundRect(132, 16, 27, 58, 5); context.stroke();
+      context.beginPath(); context.moveTo(140, 24); context.lineTo(151, 24); context.moveTo(143, 65); context.lineTo(148, 65); context.stroke();
+      context.fillStyle = "#f5bc30";
+      for (const [cx, cy] of [[140,36],[151,36],[140,47],[151,47]]) { context.beginPath(); context.arc(cx, cy, 2.5, 0, Math.PI * 2); context.fill(); }
+    } else if (workshopCode === "gdevelop") {
+      context.beginPath();
+      context.moveTo(130, 34); context.quadraticCurveTo(130, 26, 138, 26); context.lineTo(152, 26); context.quadraticCurveTo(160, 26, 162, 34); context.lineTo(166, 55); context.quadraticCurveTo(167, 64, 159, 64); context.lineTo(149, 56); context.lineTo(140, 56); context.lineTo(132, 64); context.quadraticCurveTo(124, 64, 126, 55); context.closePath(); context.stroke();
+      context.beginPath(); context.moveTo(137, 39); context.lineTo(147, 39); context.moveTo(142, 34); context.lineTo(142, 44); context.stroke();
+      context.beginPath(); context.arc(153, 38, 2.5, 0, Math.PI * 2); context.arc(158, 45, 2.5, 0, Math.PI * 2); context.fill();
+    } else if (workshopCode === "git-github") {
+      context.beginPath(); context.moveTo(135, 24); context.lineTo(151, 40); context.lineTo(135, 57); context.moveTo(151, 40); context.lineTo(160, 40); context.stroke();
+      for (const [cx, cy] of [[135,24],[135,57],[151,40],[160,40]]) { context.beginPath(); context.arc(cx, cy, 5, 0, Math.PI * 2); context.stroke(); }
+    } else {
+      context.beginPath(); context.arc(144, 42, 20, 0, Math.PI * 2); context.stroke();
+      context.beginPath(); context.moveTo(124, 42); context.lineTo(164, 42); context.moveTo(144, 22); context.lineTo(144, 62); context.stroke();
+      context.beginPath(); context.arc(144, 42, 8, 0, Math.PI * 2); context.stroke();
     }
     context.restore();
   }
 
   function drawPortrait(context, workshop, x, y, width, height, radius) {
     context.save();
-    context.shadowColor = "rgba(11,49,92,.18)";
-    context.shadowBlur = 34;
-    context.shadowOffsetY = 18;
+    context.shadowColor = "rgba(11,49,92,.22)";
+    context.shadowBlur = 32;
+    context.shadowOffsetY = 14;
     context.fillStyle = "#ffffff";
-    roundedRect(context, x - 12, y - 12, width + 24, height + 24, radius + 11);
+    roundedRect(context, x - 11, y - 11, width + 22, height + 22, radius + 10);
     context.fill();
     context.restore();
     const image = participantPhoto || workshopArtwork.get(workshop.value);
     if (image?.naturalWidth) {
       cropImage(context, image, x, y, width, height, radius);
-      if (!participantPhoto) {
-        context.fillStyle = "rgba(11,49,92,.20)";
-        context.save();
-        roundedRect(context, x, y, width, height, radius);
-        context.clip();
-        context.fillRect(x, y, width, height);
-        context.restore();
-      }
     } else {
       const gradient = context.createLinearGradient(x, y, x + width, y + height);
-      gradient.addColorStop(0, "#29a8c9");
-      gradient.addColorStop(.52, "#d6f3f4");
-      gradient.addColorStop(1, "#f6c743");
+      gradient.addColorStop(0, "#176d9d");
+      gradient.addColorStop(.55, "#74d0dc");
+      gradient.addColorStop(1, "#f5bc30");
       context.fillStyle = gradient;
       roundedRect(context, x, y, width, height, radius);
       context.fill();
-      context.fillStyle = "rgba(11,49,92,.12)";
-      context.beginPath();
-      context.arc(x + width * .5, y + height * .43, width * .19, Math.PI, Math.PI * 2);
-      context.fill();
-      context.fillRect(x, y + height * .56, width, height * .44);
     }
     if (!participantPhoto) {
+      context.save();
+      roundedRect(context, x, y, width, height, radius);
+      context.clip();
+      const fade = context.createLinearGradient(0, y + height * .68, 0, y + height);
+      fade.addColorStop(0, "rgba(11,49,92,0)");
+      fade.addColorStop(1, "rgba(11,49,92,.72)");
+      context.fillStyle = fade;
+      context.fillRect(x, y + height * .66, width, height * .34);
+      context.restore();
       context.fillStyle = "#ffffff";
-      context.font = "800 20px Inter, Arial, sans-serif";
-      context.textAlign = "center";
-      context.fillText("PHOTO FACULTATIVE", x + width / 2, y + height - 30);
+      context.font = "800 17px Inter, Arial, sans-serif";
       context.textAlign = "left";
+      context.fillText("VISUEL DE L’ATELIER", x + 20, y + height - 22);
     }
   }
 
@@ -210,44 +238,48 @@
     const height = 1080;
     drawBackdrop(width, height);
     ctx.fillStyle = "#0b315c";
-    ctx.fillRect(0, 0, width, 252);
+    ctx.fillRect(0, 0, width, 232);
     drawBrand(ctx, width, 34, true);
-    drawTechGlyphs(ctx, 910, 72, 0.9);
-    ctx.fillStyle = "#91e3e8";
-    const squareSchedule = workshop.schedule || "ATELIERS PRATIQUES · DATES À VENIR";
-    ctx.font = `800 ${fittedFont(ctx, squareSchedule, 900, 19, 13, 800)}px Inter, Arial, sans-serif`;
-    ctx.textAlign = "center";
-    ctx.fillText(squareSchedule.toLocaleUpperCase("fr"), width / 2, 154);
+    drawTechGlyphs(ctx, 858, 43, .9, workshop.value);
     ctx.fillStyle = "#ffffff";
-    ctx.font = "900 66px Inter, Arial, sans-serif";
-    ctx.fillText("I WILL BE THERE", width / 2, 224);
+    ctx.font = "900 59px Inter, Arial, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("I WILL BE THERE", width / 2, 204);
 
-    drawPortrait(ctx, workshop, 364, 286, 352, 394, 30);
-    ctx.fillStyle = "#2d607f";
-    ctx.font = "800 20px Inter, Arial, sans-serif";
-    ctx.fillText("JE M’APPELLE", width / 2, 721);
-    const nameSize = fittedFont(ctx, name, 880, 68, 42, 900);
-    ctx.font = `900 ${nameSize}px Inter, "Arial", sans-serif`;
-    const nameLines = drawWrapped(ctx, name, width / 2, 804, 880, 62, 2, nameSize, "#0b315c");
-
-    const panelY = nameLines > 1 ? 858 : 836;
-    ctx.fillStyle = "#f5bc30";
-    roundedRect(ctx, 128, panelY, 824, 151, 24);
-    ctx.fill();
+    drawPortrait(ctx, workshop, 72, 280, 390, 500, 30);
     ctx.textAlign = "left";
-    ctx.fillStyle = "#0b315c";
-    ctx.font = "850 18px Inter, Arial, sans-serif";
-    ctx.fillText("MON ATELIER", 170, panelY + 43);
-    const workshopSize = fittedFont(ctx, title, 742, 34, 23, 850);
+    ctx.fillStyle = "#147da0";
+    ctx.font = "850 21px Inter, Arial, sans-serif";
+    ctx.fillText("JE M’APPELLE", 510, 356);
+    const nameSize = fittedFont(ctx, name, 500, 78, 48, 900);
+    ctx.font = `900 ${nameSize}px Inter, "Arial", sans-serif`;
+    drawWrapped(ctx, name, 510, 455, 500, 82, 2, nameSize, "#0b315c");
+    ctx.fillStyle = "#87dfe6";
+    roundedRect(ctx, 510, 540, 92, 7, 4);
+    ctx.fill();
+    ctx.fillStyle = "#55728a";
+    ctx.font = "800 18px Inter, Arial, sans-serif";
+    ctx.fillText("À L’ATELIER", 510, 604);
+    const workshopSize = fittedFont(ctx, title, 500, 40, 25, 850);
     ctx.font = `850 ${workshopSize}px Inter, "Arial", sans-serif`;
-    drawWrapped(ctx, title, 170, panelY + 96, 742, 42, 2, workshopSize, "#0b315c");
+    drawWrapped(ctx, title, 510, 664, 500, 48, 2, workshopSize, "#0b315c");
+
+    ctx.fillStyle = "#f5bc30";
+    roundedRect(ctx, 72, 822, 936, 142, 24);
+    ctx.fill();
+    ctx.fillStyle = "#0b315c";
+    ctx.textAlign = "left";
+    ctx.font = "850 19px Inter, Arial, sans-serif";
+    ctx.fillText("DATES ET LIEU À CONFIRMER", 106, 880);
+    ctx.font = "700 22px Inter, Arial, sans-serif";
+    ctx.fillText("Votre présence commence ici.", 106, 922);
 
     ctx.fillStyle = "#0b315c";
-    ctx.fillRect(0, 1018, width, 62);
+    ctx.fillRect(0, 1004, width, 76);
     ctx.fillStyle = "#ffffff";
-    ctx.font = "750 18px Inter, Arial, sans-serif";
+    ctx.font = "750 19px Inter, Arial, sans-serif";
     ctx.textAlign = "center";
-    ctx.fillText("APPRENDRE  ·  EXPÉRIMENTER  ·  CRÉER", width / 2, 1057);
+    ctx.fillText("APPRENDRE  ·  EXPÉRIMENTER  ·  CRÉER", width / 2, 1051);
     ctx.textAlign = "left";
   }
 
@@ -256,47 +288,47 @@
     const height = 1920;
     drawBackdrop(width, height);
     ctx.fillStyle = "#0b315c";
-    ctx.fillRect(0, 0, width, 348);
-    drawBrand(ctx, width, 36, false);
-    drawTechGlyphs(ctx, 916, 82, 1.12);
-    ctx.fillStyle = "#91e3e8";
-    const storySchedule = workshop.schedule || "ATELIERS PRATIQUES · DATES À VENIR";
-    ctx.font = `800 ${fittedFont(ctx, storySchedule, 930, 23, 15, 800)}px Inter, Arial, sans-serif`;
-    ctx.textAlign = "center";
-    ctx.fillText(storySchedule.toLocaleUpperCase("fr"), width / 2, 190);
+    ctx.fillRect(0, 0, width, 284);
+    drawBrand(ctx, width, 38, false);
+    drawTechGlyphs(ctx, 850, 50, 1, workshop.value);
     ctx.fillStyle = "#ffffff";
-    ctx.font = "900 72px Inter, Arial, sans-serif";
-    ctx.fillText("I WILL BE THERE", width / 2, 294);
+    ctx.font = "900 66px Inter, Arial, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("I WILL BE THERE", width / 2, 250);
 
-    drawPortrait(ctx, workshop, 164, 392, 752, 860, 38);
-    ctx.fillStyle = "#2d607f";
-    ctx.font = "800 23px Inter, Arial, sans-serif";
-    ctx.fillText("JE M’APPELLE", width / 2, 1330);
-    const nameSize = fittedFont(ctx, name, 940, 92, 58, 900);
+    drawPortrait(ctx, workshop, 108, 332, 864, 790, 38);
+    ctx.fillStyle = "#147da0";
+    ctx.font = "850 22px Inter, Arial, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("JE M’APPELLE", width / 2, 1195);
+    const nameSize = fittedFont(ctx, name, 930, 94, 58, 900);
     ctx.font = `900 ${nameSize}px Inter, "Arial", sans-serif`;
-    const nameLines = drawWrapped(ctx, name, width / 2, 1440, 940, 80, 2, nameSize, "#0b315c");
+    const nameLines = drawWrapped(ctx, name, width / 2, 1302, 930, 92, 2, nameSize, "#0b315c");
 
-    const panelY = nameLines > 1 ? 1584 : 1555;
+    const panelY = nameLines > 1 ? 1505 : 1460;
     ctx.fillStyle = "#f5bc30";
-    roundedRect(ctx, 82, panelY, 916, 218, 27);
+    roundedRect(ctx, 80, panelY, 920, 248, 28);
     ctx.fill();
     ctx.textAlign = "left";
     ctx.fillStyle = "#0b315c";
-    ctx.font = "850 22px Inter, Arial, sans-serif";
-    ctx.fillText("MON ATELIER", 126, panelY + 56);
-    const workshopSize = fittedFont(ctx, title, 824, 40, 27, 850);
+    ctx.font = "850 23px Inter, Arial, sans-serif";
+    ctx.fillText("MON ATELIER", 132, panelY + 65);
+    const workshopSize = fittedFont(ctx, title, 810, 43, 28, 850);
     ctx.font = `850 ${workshopSize}px Inter, "Arial", sans-serif`;
-    drawWrapped(ctx, title, 126, panelY + 130, 824, 48, 2, workshopSize, "#0b315c");
+    drawWrapped(ctx, title, 132, panelY + 132, 810, 52, 2, workshopSize, "#0b315c");
+    ctx.fillStyle = "#3b5b72";
+    ctx.font = "750 18px Inter, Arial, sans-serif";
+    ctx.fillText("DATES ET LIEU À CONFIRMER", 132, panelY + 212);
 
     ctx.fillStyle = "#0b315c";
     ctx.fillRect(0, 1824, width, 96);
     ctx.fillStyle = "#ffffff";
     ctx.font = "800 24px Inter, Arial, sans-serif";
     ctx.textAlign = "center";
-    ctx.fillText("APPRENDRE  ·  EXPÉRIMENTER  ·  CRÉER", width / 2, 1865);
-    ctx.fillStyle = "#91e3e8";
+    ctx.fillText("APPRENDRE  ·  EXPÉRIMENTER  ·  CRÉER", width / 2, 1864);
+    ctx.fillStyle = "#a8eaf0";
     ctx.font = "700 17px Inter, Arial, sans-serif";
-    ctx.fillText("ICT4D · UNIVERSITÉ DE YAOUNDÉ I", width / 2, 1898);
+    ctx.fillText("ATELIERS ICT4D · UNIVERSITÉ DE YAOUNDÉ I", width / 2, 1898);
     ctx.textAlign = "left";
   }
 
@@ -324,14 +356,28 @@
     if (previewStatus) previewStatus.textContent = "Aperçu actualisé dans votre navigateur. Aucune donnée personnelle n’a été envoyée.";
   }
 
+  function loadWorkshopImage(key, source) {
+    const code = clean(key);
+    const path = clean(source);
+    if (!code || !/^\/assets\/[A-Za-z0-9][A-Za-z0-9._-]{0,200}[.](?:png|jpe?g|webp)$/i.test(path)) return;
+    const image = new Image();
+    image.onload = render;
+    image.src = path;
+    workshopArtwork.set(code, image);
+  }
+
   function loadArtwork() {
     if (!brandLogo.complete) brandLogo.onload = render;
     for (const [key, source] of Object.entries(workshopImages)) {
-      const image = new Image();
-      image.onload = render;
-      image.src = source;
-      workshopArtwork.set(key, image);
+      loadWorkshopImage(key, source);
     }
+    fetch("/api/workshops", { headers: { Accept: "application/json" }, credentials: "same-origin", cache: "no-store" })
+      .then((response) => response.ok ? response.json() : null)
+      .then((result) => {
+        if (!result?.ok || !Array.isArray(result.workshops)) return;
+        for (const workshop of result.workshops) loadWorkshopImage(workshop.registration_code, workshop.image_path);
+      })
+      .catch(() => {});
   }
 
   function makePngFile() {

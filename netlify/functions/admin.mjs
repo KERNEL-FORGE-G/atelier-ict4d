@@ -111,7 +111,7 @@ export default async (request) => {
       }
       const rpcName = resource === "proposals"
         ? "admin_list_workshop_proposals"
-        : resource === "workshops" ? "admin_list_workshops_v2" : "admin_list_registrations_v2";
+        : resource === "workshops" ? "admin_list_workshops_v3" : "admin_list_registrations_v2";
       const { response, data } = await callRpc(rpcName, { p_token: cookie, p_limit: limit, p_offset: offset });
       if (!response.ok) return json({ ok: false, message: "Session expirée ou accès refusé." }, response.status === 401 ? 401 : 503, { "Set-Cookie": clearCookie() });
       if (resource === "proposals") return json({ ok: true, proposals: Array.isArray(data) ? data : [] });
@@ -161,6 +161,7 @@ export default async (request) => {
             !validOptionalText(body.summary, 1200) || !validOptionalText(body.description, 6000) ||
             !validOptionalText(body.facilitator_name, 120) || !validOptionalText(body.facilitator_role, 120) || !validOptionalText(body.facilitator_bio, 600) ||
             !validOptionalText(body.facilitator_photo_data, 650000) ||
+            !validOptionalText(body.image_path, 220) ||
             (body.duration_minutes !== null && body.duration_minutes !== undefined && (!Number.isInteger(body.duration_minutes) || body.duration_minutes < 15 || body.duration_minutes > 600)) ||
             !["draft", "published", "archived"].includes(body.status) || typeof body.facilitator_consent !== "boolean" ||
             !Number.isInteger(body.sort_order) || body.sort_order < 0 || body.sort_order > 10000 ||
@@ -180,13 +181,17 @@ export default async (request) => {
           return json({ ok: false, message: "Planning invalide : indiquez une date, une heure de début et une heure de fin ultérieure, ou laissez le planning vide." }, 400);
         }
         const photo = optionalText(body.facilitator_photo_data);
+        const imagePath = optionalText(body.image_path);
+        if (imagePath && !/^\/assets\/[A-Za-z0-9][A-Za-z0-9._-]{0,200}[.](?:png|jpe?g|webp)$/i.test(imagePath)) {
+          return json({ ok: false, message: "Le visuel doit être une image locale du site." }, 400);
+        }
         if (photo && (!photo.startsWith("data:image/jpeg;base64,") || !/^data:image\/jpeg;base64,[A-Za-z0-9+/]+={0,2}$/.test(photo))) {
           return json({ ok: false, message: "La photo doit être une image JPEG encodée en base64." }, 400);
         }
         if (!body.facilitator_consent && (photo || optionalText(body.facilitator_name) || optionalText(body.facilitator_role) || optionalText(body.facilitator_bio))) {
           return json({ ok: false, message: "Le consentement du facilitateur est requis pour ses informations ou sa photo." }, 400);
         }
-        const { response, data } = await callRpc("admin_upsert_workshop_v2", {
+        const { response, data } = await callRpc("admin_upsert_workshop_v3", {
           p_token: cookie,
           p_id: body.id || null,
           p_slug: body.slug,
@@ -207,10 +212,26 @@ export default async (request) => {
           p_schedule_date: scheduleDate,
           p_start_time: startTime,
           p_end_time: endTime,
-          p_room: optionalText(body.room)
+          p_room: optionalText(body.room),
+          p_image_path: imagePath
         });
         if (!response.ok) return json({ ok: false, message: "Enregistrement de l’atelier refusé." }, response.status === 401 ? 401 : 400);
         return json({ ok: true, id: data });
+      }
+      if (body.action === "delete-workshop") {
+        if (typeof body.id !== "string" || !UUID_PATTERN.test(body.id)) {
+          return json({ ok: false, message: "Identifiant d’atelier invalide." }, 400);
+        }
+        const { response, data } = await callRpc("admin_delete_workshop", {
+          p_token: cookie,
+          p_id: body.id
+        });
+        if (!response.ok) return json({ ok: false, message: "Suppression ou archivage refusé." }, response.status === 401 ? 401 : 400);
+        if (!data || !["deleted", "archived", "not_found"].includes(data.action)) {
+          return json({ ok: false, message: "Réponse invalide lors de la suppression." }, 502);
+        }
+        if (data.action === "not_found") return json({ ok: false, message: "Atelier introuvable." }, 404);
+        return json({ ok: true, action: data.action, registration_count: Number.isInteger(data.registration_count) ? data.registration_count : 0 });
       }
       if (body.action === "create-workshop-from-proposal") {
         if (typeof body.proposal_id !== "string" || !UUID_PATTERN.test(body.proposal_id) ||

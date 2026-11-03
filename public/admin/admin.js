@@ -28,7 +28,9 @@
     general: "Ateliers ICT4D",
     ict4d: "Numérique et développement (ICT4D)",
     gdevelop: "Jeu vidéo avec GDevelop",
-    "git-github": "Gestion de projet avec Git/GitHub"
+    "git-github": "Gestion de projet avec Git/GitHub",
+    cybersecurite: "Cybersécurité",
+    "developpement-mobile": "Développement mobile"
   };
   const statusNames = {
     new: "Nouvelle",
@@ -755,6 +757,17 @@
   function renderWorkshops() {
     if (!workshopList || resources.workshops === null) return;
     workshopList.replaceChildren();
+    if (workshopFilter) {
+      const existingCodes = new Set([...workshopFilter.options].map((option) => option.value));
+      for (const item of resources.workshops) {
+        const code = typeof item.registration_code === "string" ? item.registration_code.trim() : "";
+        if (!code || existingCodes.has(code)) continue;
+        const option = makeElement("option", "", workshopNames[code] || item.title || code);
+        option.value = code;
+        workshopFilter.append(option);
+        existingCodes.add(code);
+      }
+    }
     const query = normalizeQuery(workshopQuery?.value);
     const found = resources.workshops.filter((item) => recordMatches(item, query, ["slug", "registration_code", "title", "theme", "summary", "description", "status", "facilitator_name", "facilitator_role"]));
     if (!found.length) { workshopList.append(makeElement("p", "resource-empty", resources.workshops.length ? "Aucun atelier ne correspond à la recherche." : "Aucun atelier enregistré.")); return; }
@@ -762,18 +775,74 @@
       const card = makeElement("article", "record-card");
       const heading = makeElement("div", "record-heading");
       heading.append(makeElement("h3", "", item.title || item.slug || "Atelier sans titre"), makeElement("span", `status-badge status-${item.status || "draft"}`, workshopStatusLabels[item.status] || item.status || "Brouillon"));
+      if (item.image_path) {
+        const image = makeElement("img", "workshop-record-image");
+        image.src = item.image_path;
+        image.alt = `Visuel de l’atelier ${item.title || item.slug || "ICT4D"}`;
+        image.loading = "lazy";
+        card.append(image);
+      }
       card.append(heading);
       if (item.theme) card.append(makeElement("p", "record-theme", item.theme));
       if (item.summary) card.append(makeElement("p", "record-summary", item.summary));
       const meta = makeElement("div", "record-meta");
       meta.append(makeElement("span", "", `/${item.slug || ""}`), makeElement("span", "", `${item.duration_minutes || "—"} min`), makeElement("span", "", `Mis à jour : ${formatDate(item.updated_at || item.created_at)}`));
       meta.append(makeElement("span", "", `Planning : ${formatWorkshopSchedule(item) || "à confirmer"}`));
+      const registrationCount = Math.max(0, Number(item.registration_count) || 0);
+      meta.append(makeElement("span", "", `${registrationCount} inscription${registrationCount === 1 ? "" : "s"} historique${registrationCount === 1 ? "" : "s"}`));
       if (item.facilitator_consent && item.facilitator_name) meta.append(makeElement("span", "", `Chargé·e : ${item.facilitator_name}`));
       card.append(meta);
       const controls = makeElement("div", "record-controls");
       const edit = makeElement("button", "button button-secondary", "Modifier"); edit.type = "button"; edit.addEventListener("click", () => openWorkshopEditor(item));
-      controls.append(edit); card.append(controls); workshopList.append(card);
+      const remove = makeElement("button", `button ${registrationCount ? "button-secondary" : "button-danger"}`, registrationCount ? "Archiver" : "Supprimer");
+      remove.type = "button";
+      if (registrationCount && item.status === "archived") { remove.textContent = "Historique conservé"; remove.disabled = true; }
+      else remove.addEventListener("click", () => deleteWorkshop(item, remove));
+      controls.append(edit, remove); card.append(controls); workshopList.append(card);
     }
+  }
+  async function deleteWorkshop(item, button) {
+    const registrationCount = Math.max(0, Number(item.registration_count) || 0);
+    const prompt = registrationCount
+      ? `${registrationCount} inscription${registrationCount === 1 ? " est liée" : "s sont liées"} à cet atelier. L’archiver le retirera du catalogue public sans effacer l’historique. Continuer ?`
+      : "Aucune inscription historique n’est liée à cet atelier. Le supprimer définitivement ?";
+    if (!window.confirm(prompt)) return;
+    button.disabled = true;
+    try {
+      const { response, data } = await api("", { method: "PATCH", body: JSON.stringify({ action: "delete-workshop", id: item.id }) });
+      if (authExpired(response)) return;
+      if (!response.ok || !data.ok) throw new Error(data.message || "L’atelier n’a pas pu être supprimé ou archivé.");
+      if (data.action === "archived") {
+        item.status = "archived";
+        item.registration_count = Number(data.registration_count) || registrationCount;
+        setMessage(dashboardMessage, `Atelier archivé. ${item.registration_count} inscription(s) historique(s) conservée(s).`, true);
+      } else if (data.action === "deleted") {
+        resources.workshops = resources.workshops.filter((workshop) => String(workshop.id) !== String(item.id));
+        if (document.querySelector("#workshop-id")?.value === String(item.id)) editor.hidden = true;
+        setMessage(dashboardMessage, "Atelier supprimé; aucune inscription historique n’était liée.", true);
+      } else {
+        throw new Error("Atelier introuvable.");
+      }
+      renderWorkshops(); updateTabCounts(); updateActiveDescription();
+    } catch (error) {
+      setMessage(dashboardMessage, error instanceof Error ? error.message : "Connexion indisponible.");
+    } finally {
+      if (button.isConnected) button.disabled = false;
+    }
+  }
+  function updateWorkshopImagePreview() {
+    const select = document.querySelector("#workshop-image-path");
+    const preview = document.querySelector("#workshop-image-preview");
+    const image = document.querySelector("#workshop-image-preview-img");
+    const source = select?.value || "";
+    if (!preview || !image || !/^\/assets\/[A-Za-z0-9][A-Za-z0-9._-]{0,200}[.](?:png|jpe?g|webp)$/i.test(source)) {
+      if (preview) preview.hidden = true;
+      if (image) image.removeAttribute("src");
+      return;
+    }
+    image.src = source;
+    image.alt = `Prévisualisation de ${document.querySelector("#workshop-title-input")?.value || "l’atelier"}`;
+    preview.hidden = false;
   }
   function openWorkshopEditor(item = null) {
     if (!workshopForm || !editor) return;
@@ -781,11 +850,12 @@
     document.querySelector("#workshop-id").value = item?.id || "";
     document.querySelector("#workshop-source-proposal").value = item?.source_proposal_id || "";
     document.querySelector("#workshop-editor-title").textContent = item ? `Modifier : ${item.title || item.slug}` : "Nouvel atelier";
-    const fields = { "workshop-slug": "slug", "workshop-registration-code": "registration_code", "workshop-title-input": "title", "workshop-theme": "theme", "workshop-summary": "summary", "workshop-description": "description", "workshop-duration": "duration_minutes", "workshop-status": "status", "workshop-schedule-date": "schedule_date", "workshop-start-time": "start_time", "workshop-end-time": "end_time", "workshop-room": "room", "facilitator-name": "facilitator_name", "facilitator-role": "facilitator_role", "facilitator-bio": "facilitator_bio" };
+    const fields = { "workshop-slug": "slug", "workshop-registration-code": "registration_code", "workshop-title-input": "title", "workshop-theme": "theme", "workshop-summary": "summary", "workshop-description": "description", "workshop-duration": "duration_minutes", "workshop-status": "status", "workshop-schedule-date": "schedule_date", "workshop-start-time": "start_time", "workshop-end-time": "end_time", "workshop-room": "room", "workshop-image-path": "image_path", "facilitator-name": "facilitator_name", "facilitator-role": "facilitator_role", "facilitator-bio": "facilitator_bio" };
     for (const [id, key] of Object.entries(fields)) {
       const value = item?.[key] ?? (key === "status" ? "draft" : "");
       document.getElementById(id).value = key === "start_time" || key === "end_time" ? String(value).slice(0, 5) : value;
     }
+    updateWorkshopImagePreview();
     document.querySelector("#facilitator-consent").checked = item?.facilitator_consent === true;
     const photo = document.querySelector("#photo-preview");
     const photoTools = document.querySelector("#photo-tools");
@@ -847,6 +917,7 @@
       duration_minutes: document.querySelector("#workshop-duration").value ? Number(document.querySelector("#workshop-duration").value) : null,
       schedule_date: scheduleDate || null, start_time: startTime || null, end_time: endTime || null,
       room: document.querySelector("#workshop-room").value.trim() || null,
+      image_path: document.querySelector("#workshop-image-path")?.value || null,
       status, facilitator_name: consent ? document.querySelector("#facilitator-name").value.trim() : "", facilitator_role: consent ? document.querySelector("#facilitator-role").value.trim() : "", facilitator_bio: consent ? document.querySelector("#facilitator-bio").value.trim() : "",
       facilitator_photo_data: consent ? (cropDataUrl || existing?.facilitator_photo_data || "") : "", facilitator_consent: consent,
       sort_order: existing?.sort_order ?? 0, source_proposal_id: document.querySelector("#workshop-source-proposal").value || existing?.source_proposal_id || null,
@@ -880,6 +951,7 @@
   document.querySelector("#refresh-button")?.addEventListener("click", refreshActiveTab);
   document.querySelector("#new-workshop-button")?.addEventListener("click", () => openWorkshopEditor());
   document.querySelector("#cancel-workshop-button")?.addEventListener("click", () => { editor.hidden = true; });
+  document.querySelector("#workshop-image-path")?.addEventListener("change", updateWorkshopImagePreview);
   workshopForm?.addEventListener("submit", (event) => { event.preventDefault(); saveWorkshop(); });
   document.querySelector("#archive-workshop-button")?.addEventListener("click", () => {
     if (window.confirm("Archiver cet atelier ? Il ne sera plus publié.")) { document.querySelector("#workshop-status").value = "archived"; saveWorkshop("archived"); }
