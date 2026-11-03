@@ -174,20 +174,20 @@
     "developpement-mobile": "/sessions/developpement-mobile/"
   };
   const workshopImages = {
-    ict4d: "/assets/illustration-general-web.jpg",
-    general: "/assets/illustration-general-web.jpg",
-    gdevelop: "/assets/illustration-gdevelop-web.jpg",
-    "git-github": "/assets/illustration-git-github-web.jpg",
-    cybersecurite: "/assets/illustration-cybersecurity.jpg",
-    "developpement-mobile": "/assets/illustration-mobile-development.jpg"
+    ict4d: "/assets/illustration-ict4d-canva.webp",
+    general: "/assets/illustration-ict4d-canva.webp",
+    gdevelop: "/assets/illustration-gdevelop-canva.webp",
+    "git-github": "/assets/illustration-project-canva.webp",
+    cybersecurite: "/assets/illustration-cybersecurity-canva.webp",
+    "developpement-mobile": "/assets/illustration-mobile-canva.webp"
   };
   const workshopTags = {
-    ict4d: "PANORAMA ICT4D",
-    general: "PANORAMA ICT4D",
+    ict4d: "BIEN PLUS QUE DU CODE",
+    general: "BIEN PLUS QUE DU CODE",
     gdevelop: "CRÉATION NUMÉRIQUE",
-    "git-github": "COLLABORATION",
-    cybersecurite: "SÉCURITÉ & HYGIÈNE NUMÉRIQUE",
-    "developpement-mobile": "CRÉATION D’APPLICATIONS MOBILES"
+    "git-github": "DE L’IDÉE AU DÉPLOIEMENT",
+    cybersecurite: "DÉTECTE · PROTÈGE · RÉAGIS",
+    "developpement-mobile": "DE L’IDÉE À L’APPLICATION"
   };
 
   function text(value) {
